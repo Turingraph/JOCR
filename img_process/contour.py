@@ -2,17 +2,17 @@ import cv2
 import numpy as np
 from image_utility import odd_kernel_area, get_default_option
 
-def get_contours(dilate_img):
+def get_contours(dilate_img: np.ndarray):
     contours, hierarchy = cv2.findContours(dilate_img, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     return contours
 
-def DetectContourImg(
+def detect_contour_img(
         img:np.ndarray,
-        threshold_px:None|int = None,
+        threshold_px:none|int = none,
         kernel      :np.ndarray = np.ones((2,30)),
         kernel_area :int = 9,
         ):
-    kernel_area = OddKernelArea(kernel_area)
+    kernel_area = odd_kernel_area(kernel_area)
     img = cv2.GaussianBlur(img,(kernel_area,kernel_area), 0) 
     if threshold_px != None:
         img = cv2.threshold(img, threshold_px, 255, cv2.THRESH_BINARY)[1]
@@ -20,17 +20,17 @@ def DetectContourImg(
     img = cv2.dilate(img, kernel, iterations = 1)
     return img
 
-def SortContours(contour:list, is_reverse:bool = False, method:str|int = 4):
+def sort_contours(contour:list, is_reverse:bool = false, method:str|int = 4):
     message = '''
-method:str|int = 4
-* 0, x, left, right
-* 1, y, top, bottom, up, down
-* 2, w, width
-* 3, h, height
-* 4, size, area, s, a
-'''
+    method:str|int = 4
+    * 0, x, left, right
+    * 1, y, top, bottom, up, down
+    * 2, w, width
+    * 3, h, height
+    * 4, size, area, s, a
+    '''
     if isinstance(method, int):
-        method = GetDefaultOption(method,[4,0,1,2,3],message)
+        method = get_default_option(method,[4,0,1,2,3],message)
         if method == 0:
             return sorted(contour, key=lambda x:cv2.boundingRect(x)[0], reverse = is_reverse)
         if method == 1:

@@ -57,7 +57,13 @@ def GetFFTImage(img:np.ndarray):
 
 ########################################################################################################################################################
 
-def PrivateEditFFT(dft:np.ndarray, row:int = None, col:int|None = None, is_blur:bool = True, freq:float = 0, mode:int = cv2.MORPH_RECT):
+def PrivateEditFFT(
+        dft:np.ndarray, 
+        row:int = None, 
+        col:int|None = None, 
+        is_blur:bool = True, 
+        freq:float = 0, 
+        mode:int = cv2.MORPH_RECT):
     # https://numpy.org/doc/stable/reference/generated/numpy.where.html
     # https://stackoverflow.com/questions/56594598/change-1s-to-0-and-0s-to-1-in-numpy-array-without-looping
     cx = math.floor(dft.shape[1]/2)

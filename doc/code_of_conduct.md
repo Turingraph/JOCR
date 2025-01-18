@@ -77,40 +77,105 @@ Meaning
 # Python Function Naming Convention
 
 1.	Every Function name don't have capital letter.
--	Correct Example: `def add(int: num_0, int: num_1) -> int:`
--	Wrong Example: `def Add(int: num_0, int: num_1) -> int:` etc.
-2.	Function names that have multiple words should separated by underscores (_).
--	Correct Example: `def dot_product(np.ndarray: vec_0, np.ndarray: vec_1) -> np.ndarray:`
--	Wrong Example: `def dotproduct(np.ndarray: vec_0, np.ndarray: vec_1) -> np.ndarray:` etc.
-3.	Don't use characters that is not English Alphabet and number (special characters) and underscores (_)
--	Examples of special characters: space ( ), slash (/), hyphens (-), dollar sign ($), ko (ก), ha (๕) etc.
+-	Correct Example: `def add(num_00: int, num_01: int) -> int:`
+-	Wrong Example: `def Add(num_00: int, num_01: int) -> int:` etc.
+2.	Function names that have multiple words should separated by underscores (`_`).
+-	Correct Example: `def dot_product(vec_00: np.ndarray, vec_01: np.ndarray) -> np.ndarray:`
+-	Wrong Example: `def dotproduct(vec_00: np.ndarray, vec_01: np.ndarray) -> np.ndarray:` etc.
+3.	Don't use characters that is not English Alphabet and number (special characters) and underscores (`_`)
+-	Examples of special characters: space (` `), slash (`/`), hyphens (`-`), dollar sign (`$`), ko (`ก`), ha (`๕`) etc.
 4.	All parameter inside the function following our naming convention rule.
--	Correct Example: `def dot_product(np.ndarray: vec_0, np.ndarray: vec_1) -> np.ndarray:`
--	Wrong Example: `def dot_product(np.ndarray: vec0, np.ndarray: vec1) -> np.ndarray:`
--	Wrong Example: `def dot_product(np.ndarray: vec_0, np.ndarray: vec_1) -> np.ndarray:`
--	Wrong Example: `def dot_product(np.ndarray: vec_1,np.ndarray: vec_2) -> np.ndarray:`
+-	Correct Example: `def dot_product(vec_00: np.ndarray, vec_01: np.ndarray) -> np.ndarray:`
+-	Wrong Example: `def dot_product(vec_0: np.ndarray, vec_1: np.ndarray) -> np.ndarray:`
+-	Wrong Example: `def dot_product(vec_1: np.ndarray, vec_2: np.ndarray) -> np.ndarray:`
+-	Wrong Example: `def dot_product(vec_01: np.ndarray, vec_02: np.ndarray) -> np.ndarray:`
 5.	Always specify the type of input parameter and output.
--	Correct Example: `def dot_product(np.ndarray: vec_0, np.ndarray: vec_1) -> np.ndarray:`
--	Wrong Example: `def dot_product(np.ndarray: vec_0, np.ndarray: vec_1):`
--	Wrong Example: `def dot_product(vec_0, vec_1) -> np.ndarray:`
--	Wrong Example: `def dot_product(vec_0, vec_1):`
-6.	Use only space ( ), (not tap (`\t`)), to make space between `def`, parameter, parameter type and output type
--	Correct Example: `def dot_product(np.ndarray: vec_0, np.ndarray: vec_1) -> np.ndarray:`
--	Wrong Example: `def		dot_product(np.ndarray: vec_0, np.ndarray: vec_1) -> np.ndarray:`
--	Wrong Example: `def dot_product(np.ndarray: vec_0, np.ndarray: vec_1)->np.ndarray:`
--	Wrong Example: `def dot_product(np.ndarray:vec_0, np.ndarray:vec_1) -> np.ndarray:`
-7.	No space between the previous character and colon (:)
--	Correct Example: `def dot_product(np.ndarray: vec_0, np.ndarray: vec_1) -> np.ndarray:`
--	Wrong Example: `def dot_product(np.ndarray: vec_0, np.ndarray: vec_1) -> np.ndarray :`
+-	Correct Example: `def dot_product(vec_00: np.ndarray, vec_01: np.ndarray) -> np.ndarray:`
+-	Wrong Example: `def dot_product(vec_00: np.ndarray, vec_01: np.ndarray):`
+-	Wrong Example: `def dot_product(vec_00, vec_01) -> np.ndarray:`
+-	Wrong Example: `def dot_product(vec_00, vec_01):`
+6.	Use only space (` `), (not tap (`\t`)), to make space between `def`, parameter, parameter type and output type
+-	Correct Example: `def dot_product(vec_00: np.ndarray, vec_01: np.ndarray) -> np.ndarray:`
+-	Wrong Example: `def		dot_product(vec_00: np.ndarray, vec_01: np.ndarray) -> np.ndarray:`
+-	Wrong Example: `def dot_product(vec_00: np.ndarray, vec_01: np.ndarray)->np.ndarray:`
+-	Wrong Example: `def dot_product(vec_00:np.ndarray, vec_01: np.ndarray) -> np.ndarray:`
+-	Wrong Example: `def dot_product(vec_00: np.ndarray, vec_01:		np.ndarray) -> np.ndarray:`
+7.	No space between the previous character and colon (`:`)
+-	Correct Example: `def dot_product(vec_00: np.ndarray, vec_01: np.ndarray) -> np.ndarray:`
+-	Wrong Example: `def dot_product(vec_00: np.ndarray, vec_01: np.ndarray) -> np.ndarray :`
 -	Wrong Example: `def dot_product(np.ndarray:vec_0, np.ndarray :vec_1) -> np.ndarray:`
-8.	No space between the previous character and comma (,)
--	Correct Example: `def dot_product(np.ndarray: vec_0, np.ndarray: vec_1) -> np.ndarray:`
--	Wrong Example: `def dot_product(np.ndarray: vec_0,np.ndarray: vec_1) -> np.ndarray:`
--	Wrong Example: `def dot_product(np.ndarray: vec_0 ,np.ndarray: vec_1) -> np.ndarray:`
+-	Wrong Example: `def dot_product(np.ndarray : vec_0, np.ndarray : vec_1) -> np.ndarray:`
+8.	No space between the previous character and comma (`,`)
+-	Correct Example: `def dot_product(vec_00: np.ndarray, vec_01: np.ndarray) -> np.ndarray:`
+-	Wrong Example: `def dot_product(vec_00: np.ndarray,vec_01: np.ndarray) -> np.ndarray:`
+-	Wrong Example: `def dot_product(vec_00: np.ndarray ,vec_01: np.ndarray) -> np.ndarray:`
+9.	When there is more than 2 parameters, dev should write the 2 indentation with one parameter per a line.
+-	1st Correct Example: 
+```
+def quick_sort(
+		ls: list, 
+		start: int = 0, 
+		stop: int | None = None, 
+		is_rand_pivot: bool = False
+	) -> void:
+	# Activate Quick sort using O(n log(n)) time and O(log(n)) space
+```
+-	1st Wrong Example: 
+```
+def quick_sort(ls: list, 
+		start: int = 0, 
+		stop: int | None = None, 
+		is_rand_pivot: bool = False
+	) -> void:
+	# Activate Quick sort using O(n log(n)) time and O(log(n)) space
+```
+-	1st Wrong Example: 
+```
+def quick_sort(
+		ls: list, 
+		start: int = 0, 
+		stop: int | None = None, 
+		is_rand_pivot: bool = False
+		) -> void:
+	# Activate Quick sort using O(n log(n)) time and O(log(n)) space
+```
+-	1st Wrong Example: 
+```
+def quick_sort(ls: list, start: int = 0, stop: int | None = None, is_rand_pivot: bool = False) -> void:
+	# Activate Quick sort using O(n log(n)) time and O(log(n)) space
+```
+-	1st Wrong Example: 
+```
+def quick_sort(
+	ls: list, 
+	start: int = 0, 
+	stop: int | None = None, 
+	is_rand_pivot: bool = False
+	) -> void:
+	# Activate Quick sort using O(n log(n)) time and O(log(n)) space
+```
+-	1st Wrong Example: 
+```
+def quick_sort(
+	ls: list, 
+	start: int = 0, 
+	stop: int | None = None, 
+	is_rand_pivot: bool = False) -> void:
+	# Activate Quick sort using O(n log(n)) time and O(log(n)) space
+```
+-	2nd Correct Example: `def dot_product(vec_00: np.ndarray, vec_01: np.ndarray) -> np.ndarray:`
+-	2nd Wrong Example: 
+```
+def dot_product(
+		vec_00: np.ndarray, 
+		vec_01: np.ndarray
+	) -> np.ndarray:
+```
+
 
 # Additional Python Coding Convention
 
-1.	There is always space between any characters (include number and `[`, `]`, `(`, `)`, `{` and `}`) with `+`, `-`, `*`, `/`, `%`, `=`, `**` and `->`
+1.	There is always space between any characters (include number and `[`, `]`, `(`, `)`, `{` and `}`) with `+`, `-`, `*`, `/`, `%`, `=`, `|`, `**` and `->`
 -	1st Correct Example: `vec_y = vec_00 + vec_01`
 -	1st Wrong Example: `vec_y = vec_00 +vec_01`
 -	1st Wrong Example: `vec_y = vec_00+ vec_01`
@@ -118,10 +183,10 @@ Meaning
 -	1st Wrong Example: `vec_y =vec_00 + vec_01`
 -	1st Wrong Example: `vec_y=vec_00 + vec_01`
 -	1st Wrong Example: `vec_y=vec_00 + vec_01`
--	2nd Correct Example: `def dot_product(np.ndarray: vec_0, np.ndarray: vec_1) -> np.ndarray:`
--	2nd Wrong Example: `def dot_product(np.ndarray: vec_0, np.ndarray: vec_1) ->np.ndarray:`
--	2nd Wrong Example: `def dot_product(np.ndarray: vec_0, np.ndarray: vec_1)-> np.ndarray:`
--	2nd Wrong Example: `def dot_product(np.ndarray: vec_0, np.ndarray: vec_1)->np.ndarray:`
+-	2nd Correct Example: `def dot_product(vec_00: np.ndarray, vec_01: np.ndarray) -> np.ndarray:`
+-	2nd Wrong Example: `def dot_product(vec_00: np.ndarray, vec_01: np.ndarray) ->np.ndarray:`
+-	2nd Wrong Example: `def dot_product(vec_00: np.ndarray, vec_01: np.ndarray)-> np.ndarray:`
+-	2nd Wrong Example: `def dot_product(vec_00: np.ndarray, vec_01: np.ndarray)->np.ndarray:`
 -	3rd Correct Example: `ls = ["Mumu", "CheChe", "Tata"]`
 -	3rd Wrong Example: `ls =["Mumu", "CheChe", "Tata"]`
 -	3rd Wrong Example: `ls= ["Mumu", "CheChe", "Tata"]`
@@ -142,13 +207,15 @@ Meaning
 Non Serious Rule list
 
 1.	1st, 2nd and 3rd rules of Additional Python Coding Convention section
-2.	6th, 7th and 8th rules of Python Function Naming Convention section
+2.	6th, 7th, 8th and 9th rules of Python Function Naming Convention section
 
 Note that it is allow to violate some of our coding convention rule in the "Non Serious Rule" list, but it is recommended to follow our rule as much as possible.
 Anyone who want to contribute our project can help us write script that convert our code, such that it follow our coding convention automatically.
 
+# Additional Resource
+
 Here is the following resource to learn more about our project
-1.	`doc/` about our project.
+1.	`README.md` about our project.
 1.	`doc_user/` about how to user our project. It is under development process.
 3.	`doc/README.md` about meaning of each md files in `doc/` directory.
-3.	`doc/folder_structure.md` about the folder structure of our project.
+4.	`doc/folder_structure.md` about the folder structure of our project.
