@@ -1,26 +1,25 @@
 import pytesseract
 import os
-import cv2
-from TextUtility import Path2Image
+from utility import path2_image
 
 
-def GetImgText(img):
-    # https://youtu.be/4uWp6dS6_G4?si=puVTzBm6vtLt4LXl
-    img = Path2Image(img)
+def get_img_text(img):
+    # https://youtu.be/4u_wp6d_s6_g4?si=pu_v_tz_bm6vt_lt4l_xl
+    img = path2_image(img)
     return pytesseract.image_to_string(img)
 
 
-def PrintImgText(img):
-    text = GetImgText(img)
+def print_img_text(img):
+    text = get_img_text(img)
     print(text)
 
 
-def SaveText(
+def save_text(
     text,
-    title="TextResult",
-    folder="TextResult",
+    title="text_result",
+    folder="text_result",
     fileformat="txt",
-    is_show=False,
+    is_show=false,
 ):
     # https://www.w3schools.com/python/python_file_write.asp
     # https://www.geeksforgeeks.org/python-check-if-a-file-or-directory-exists/
@@ -32,20 +31,20 @@ def SaveText(
     file = open(path, "w")
     file.write(text)
     file.close()
-    if is_show == True:
+    if is_show == true:
         print(text)
 
 
-def SaveImgText(
+def save_img_text(
     img,
     title="textresult",
-    folder="TextResult",
+    folder="text_result",
     fileformat="txt",
-    is_show=False,
+    is_show=false,
 ):
     # https://www.w3schools.com/python/python_file_write.asp
     # https://www.geeksforgeeks.org/python-check-if-a-file-or-directory-exists/
-    text = GetImgText(img)
-    SaveText(
+    text = get_img_text(img)
+    save_text(
         text, title=title, folder=folder, fileformat=fileformat, is_show=is_show
     )

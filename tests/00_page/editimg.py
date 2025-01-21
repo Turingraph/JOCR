@@ -10,17 +10,17 @@ sys.path.append(parent)
 
 ###############################################################################################################
 
-from ImgProcess_I.GrayImage import GrayImage
+from include.img_process_gray import img_process_gray
 import cv2
 
-path = parent + "/Examples/01_Page/Img/img.jpg"
+path = parent + "/tests/00_page/img/img.jpg"
 
-img = GrayImage(path)
-img.Zoom(-1.23)
-img.Rotate()
-img.Threshold()
-img.Show()
+img = img_process_gray(path)
+img.zoom(-1.23)
+img.rotate()
+img.threshold()
+img.show()
 
 """
-python3 EditImage.py
+python3 editimg.py
 """
