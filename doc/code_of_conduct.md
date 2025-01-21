@@ -78,6 +78,7 @@ Rule of naming file and folder in our project.
 -	4th Correct Example: `len(ls)`
 -	4th Correct Example: `len(obj = ls)`
 15. You can use `############################` for separating the Python file as multiple sections depending on how you separate it.
+16. Do not specify the output type of OOP constructure and the input type of parameter `self` in class.
 
 # Naming Meaning
 
