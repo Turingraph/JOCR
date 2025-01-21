@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 
-def InvertedImage(img: np.ndarray):
+def inverted_image(img: np.ndarray):
     return cv2.bitwise_not(img)
 
 
@@ -17,7 +17,7 @@ def odd_area(num: int):
             return num + 1
 
 
-def SetPx(num: int) -> int:
+def set_px(num: int) -> int:
     num = int(num)
     if num < 0:
         return 0
@@ -27,7 +27,7 @@ def SetPx(num: int) -> int:
         return num
 
 
-def GetDefaultOption(input: any, input_options: list, message: str):
+def get_default_option(input: any, input_options: list, message: str):
     if input not in input_options:
         print(message)
         return input_options[0]
@@ -35,11 +35,11 @@ def GetDefaultOption(input: any, input_options: list, message: str):
         return input
 
 
-def GetSize(
-    size: int | None, max_size: int | None = None, default_size: int = 0
+def get_size(
+    size: int | none, max_size: int | none = none, default_size: int = 0
 ):
     if type(size) == int:
-        if max_size == None:
+        if max_size == none:
             max_size = size
         if size < 0:
             return 0

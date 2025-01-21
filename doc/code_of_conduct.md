@@ -65,7 +65,7 @@ Rule of naming file and folder in our project.
 -	Wrong Example: `def dot_product(vec_00: np.ndarray, vec_01: np.ndarray):`
 -	Wrong Example: `def dot_product(vec_00, vec_01) -> np.ndarray:`
 -	Wrong Example: `def dot_product(vec_00, vec_01):`
-14.	When using function, dev should use `parameter_name = value` 
+14.	When using function with multiple paratemers or class with multiple attributes, dev should use `parameter_name = value` 
 -	1st Correct Example: `vec_y = dot_product(vec_00 = vec_v, vec_01 = vec_u)`
 -	1st Wrong Example: `vec_y = dot_product(vec_v, vec_u)`
 -	2nd Correct Example: `quick_sort(ls = ls)`
@@ -73,6 +73,10 @@ Rule of naming file and folder in our project.
 -	2nd Wrong Example: `quick_sort(ls)`
 -	2nd Wrong Example: `quick_sort(ls, 0)`
 -	2nd Wrong Example: `quick_sort(ls, start = 0)`
+-	3rd Correct Example: `np.ones(shape = my_shape)`
+-	3rd Wrong Example: `np.ones(my_shape)`
+-	4th Correct Example: `len(ls)`
+-	4th Correct Example: `len(obj = ls)`
 15. You can use `############################` for separating the Python file as multiple sections depending on how you separate it.
 
 # Naming Meaning
