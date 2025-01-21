@@ -1,58 +1,59 @@
 import cv2
 import numpy as np
-from image_utility import odd_kernel_area, get_default_option
+from utility import odd_kernel_area, get_default_option
 
-def get_contours(dilate_img: np.ndarray):
-    contours, hierarchy = cv2.findContours(dilate_img, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+
+def get_contours(dilate_img: np.ndarray) -> list:
+    contours, hierarchy = cv2.findContours(
+        image=dilate_img, mode=cv2.RETR_LIST, method=cv2.CHAIN_APPROX_SIMPLE
+    )
     return contours
 
+
 def detect_contour_img(
-        img:np.ndarray,
-        threshold_px:none|int = none,
-        kernel      :np.ndarray = np.ones((2,30)),
-        kernel_area :int = 9,
-        ):
-    kernel_area = odd_kernel_area(kernel_area)
-    img = cv2.GaussianBlur(img,(kernel_area,kernel_area), 0) 
+    img: np.ndarray,
+    threshold_px: None | int = None,
+    kernel: np.ndarray = np.ones(shape=(2, 30)),
+    kernel_area: int = 9,
+) -> np.ndarray:
+    kernel_area = odd_kernel_area(num=kernel_area)
+    img = cv2.GaussianBlur(src=img, ksize=(kernel_area, kernel_area), sigmaX=0)
     if threshold_px != None:
-        img = cv2.threshold(img, threshold_px, 255, cv2.THRESH_BINARY)[1]
-    img = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
-    img = cv2.dilate(img, kernel, iterations = 1)
+        img = cv2.threshold(
+            src=img, thresh=threshold_px, maxval=255, type=cv2.THRESH_BINARY
+        )[1]
+    img = cv2.threshold(
+        src=img,
+        thresh=0,
+        maxval=255,
+        type=cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU,
+    )[1]
+    img = cv2.dilate(src=img, kernel=kernel, iterations=1)
     return img
 
-def sort_contours(contour:list, is_reverse:bool = false, method:str|int = 4):
-    message = '''
-    method:str|int = 4
-    * 0, x, left, right
-    * 1, y, top, bottom, up, down
-    * 2, w, width
-    * 3, h, height
-    * 4, size, area, s, a
-    '''
-    if isinstance(method, int):
-        method = get_default_option(method,[4,0,1,2,3],message)
-        if method == 0:
-            return sorted(contour, key=lambda x:cv2.boundingRect(x)[0], reverse = is_reverse)
-        if method == 1:
-            return sorted(contour, key=lambda x:cv2.boundingRect(x)[1], reverse = is_reverse)
-        if method == 2:
-            return sorted(contour, key=lambda x:cv2.boundingRect(x)[2], reverse = is_reverse)
-        if method == 3:
-            return sorted(contour, key=lambda x:cv2.boundingRect(x)[3], reverse = is_reverse)
-        if method == 4:
-            return sorted(contour, key=lambda x:cv2.contourArea(x), reverse = is_reverse)
-    if isinstance(method, str):
-        method = method.replace(" ", "").lower()
-        if any(sub == method[0] for sub in ['0', 'x', 'l', 'r']):
-            return sorted(contour, key=lambda x:cv2.boundingRect(x)[0], reverse = is_reverse)
-        if any(sub == method[0] for sub in ['1', 'y', 't', 'b', 'u', 'd']):
-            return sorted(contour, key=lambda x:cv2.boundingRect(x)[1], reverse = is_reverse)
-        if any(sub == method[0] for sub in ['2', 'w']):
-            return sorted(contour, key=lambda x:cv2.boundingRect(x)[2], reverse = is_reverse)
-        if any(sub == method[0] for sub in ['3', 'h']):
-            return sorted(contour, key=lambda x:cv2.boundingRect(x)[3], reverse = is_reverse)
-        if any(sub == method[0] for sub in ['4', 's', 'a']):
-            return sorted(contour, key=lambda x:cv2.contourArea(x), reverse = is_reverse)
-        else:
-            print(message)
-            return sorted(contour, key=lambda x:cv2.contourArea(x), reverse = is_reverse)
+
+def sort_contours(
+    contour: list, is_reverse: bool = False, method: int = 4
+) -> list:
+    message = """
+    method: str | int = 4
+    * 0 = x
+    * 1 = y
+    * 2 = width
+    * 3 = height
+    * 4 = size
+    """
+    method = get_default_option(
+        input=method, input_options=[4, 0, 1, 2, 3], message=message
+    )
+    if method in [0, 1, 2, 3]:
+        return sorted(
+            iterate=contour,
+            key=lambda x: cv2.boundingRect(array=x)[method],
+            reverse=is_reverse,
+        )
+    return sorted(
+        iterate=contour,
+        key=lambda x: cv2.contourArea(array=x),
+        reverse=is_reverse,
+    )

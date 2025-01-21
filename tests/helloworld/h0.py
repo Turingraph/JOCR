@@ -12,7 +12,7 @@ sys.path.append(parent)
 
 j = 0
 for i in sys.path:
-    print(j,'\t'+i)
+    print(j, "\t" + i)
     j += 1
 
 # 0       /home/pc/Desktop/Project/JOCR_SOBA/Examples/01_Page

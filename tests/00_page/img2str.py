@@ -13,20 +13,16 @@ sys.path.append(parent)
 import ReadText as read
 
 path = [
-    '/Examples/01_Page/Img/img.jpg' ,
-    '/Examples/01_Page/ImgOut/OtsuBinaryPx.jpg',
-    '/Examples/01_Page/ImgOut/ThickFont.jpg',
+    "/Examples/01_Page/Img/img.jpg",
+    "/Examples/01_Page/ImgOut/OtsuBinaryPx.jpg",
+    "/Examples/01_Page/ImgOut/ThickFont.jpg",
 ]
 
-name = [
-    'Original',
-    'OtsuBinaryPx',
-    'ThickFont'
-]
+name = ["Original", "OtsuBinaryPx", "ThickFont"]
 
 for i in range(len(path)):
-    read.SaveTextFromImage(parent + path[i],name[i])
+    read.SaveTextFromImage(parent + path[i], name[i])
 
-'''
+"""
 python3 Image2Text.py
-'''
+"""

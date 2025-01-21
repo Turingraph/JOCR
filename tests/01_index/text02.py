@@ -10,12 +10,19 @@ sys.path.append(parent)
 
 ###############################################################################################################
 
-from ColumnSegmentation import ColumnSegmentation 
-import ImgProcess.Show as show 
+from ColumnSegmentation import ColumnSegmentation
+import ImgProcess.Show as show
 
-path = '/Users/imac/Desktop/JOCR_SOBA/exPyDH02_Index/OriginalImage/img.jpeg'
+path = "/Users/imac/Desktop/JOCR_SOBA/exPyDH02_Index/OriginalImage/img.jpeg"
 img = show.ReadImage(path)
-ColumnSegmentation(img,width=20,height=200,is_show=True,img_title='ColumnSegmentation',is_multiple_imgs=True)
-'''
+ColumnSegmentation(
+    img,
+    width=20,
+    height=200,
+    is_show=True,
+    img_title="ColumnSegmentation",
+    is_multiple_imgs=True,
+)
+"""
 python3 text02.py
-'''
+"""

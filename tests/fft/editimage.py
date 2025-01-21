@@ -14,14 +14,14 @@ import cv2
 from ImgProcess_I.GrayImage import GrayImage
 from ImgProcess_I.Image import Image
 
-img_path = parent + '/Examples/FFT/Image/jojomeme.jpg'
+img_path = parent + "/Examples/FFT/Image/jojomeme.jpg"
 img = Image(img)
-img.Show('Color')
+img.Show("Color")
 img = GrayImage(img)
-img.Show('B&W')
-img.FFTSharp(img,20,10,is_show=True)
-img.Show(fft_img,'sharp')
+img.Show("B&W")
+img.FFTSharp(img, 20, 10, is_show=True)
+img.Show(fft_img, "sharp")
 
-'''
+"""
 python3 EditImage.py
-'''
+"""
