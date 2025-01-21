@@ -1,12 +1,10 @@
 import cv2
 import numpy as np
 
+def inverted_image(img: np.ndarray) -> np.ndarray:
+    return cv2.bitwise_not(src=img)
 
-def inverted_image(img: np.ndarray):
-    return cv2.bitwise_not(img)
-
-
-def odd_area(num: int):
+def odd_area(num: int) -> int:
     num = int(num)
     if num < 3:
         return 3
@@ -15,7 +13,6 @@ def odd_area(num: int):
             return num
         else:
             return num + 1
-
 
 def set_px(num: int) -> int:
     num = int(num)
@@ -26,20 +23,18 @@ def set_px(num: int) -> int:
     else:
         return num
 
-
-def get_default_option(input: any, input_options: list, message: str):
+def get_default_option(input: any, input_options: list, message: str) -> any:
     if input not in input_options:
-        print(message)
+        print(value=message)
         return input_options[0]
     else:
         return input
 
-
 def get_size(
-    size: int | none, max_size: int | none = none, default_size: int = 0
-):
+    size: int | None, max_size: int | None = None, default_size: int = 0
+) -> int:
     if type(size) == int:
-        if max_size == none:
+        if max_size == None:
             max_size = size
         if size < 0:
             return 0
@@ -49,7 +44,6 @@ def get_size(
             return size
     else:
         return default_size
-
 
 """
 Reference

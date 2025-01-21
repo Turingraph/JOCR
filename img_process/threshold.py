@@ -100,7 +100,7 @@ class threshold:
             self.threshold_px = set_px(num=threshold_px)
         self.max_px = set_px(num=max_px)
 
-    def edit(self, img: np.ndarray):
+    def edit(self, img: np.ndarray) -> np.ndarray:
         if type(self.threshold_px) == int:
             return cv2.threshold(
                 img, thresh=self.threshold_px, maxval=self.max_px, type=self.method
@@ -130,7 +130,7 @@ class threshold_adapt:
             message=message_02,
         )
 
-    def edit(self, img: np.ndarray):
+    def edit(self, img: np.ndarray) -> np.ndarray:
         return cv2.adaptiveThreshold(
             src=img,
             maxVal=self.max_px,
