@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-from utility import odd_kernel_area, get_default_option
+from utility import get_default_option
 
 message = """
 input_options = cv2.MORPH_RECT
