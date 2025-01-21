@@ -1,3 +1,9 @@
+# Introduction
+
+The purpose of this file is to show how to use `pip`, Python virtual environment and Python library in Ubuntu Linux distribution.
+
+It is recommended to read `doc/python_virtual_environment.md` before read this file
+
 # How to solve pip install error This environment is externally managed ?
 
 Sometimes, when `pip install` Python package in Ubuntu, you might get this error
