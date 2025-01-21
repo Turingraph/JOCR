@@ -107,7 +107,7 @@ def fft_blur(
     col: int,
     freq: float = 0,
     mode: int = cv2.MORPH_RECT,
-):
+) -> np.ndarray:
     return edit_fft(
         img=img, row=row, col=col, freq=freq, mode=mode, is_blur=True
     )
@@ -119,7 +119,7 @@ def fft_sharp(
     col: int,
     freq: float = 0,
     mode: int = cv2.MORPH_RECT,
-):
+) -> np.ndarray:
     return edit_fft(
         img=img, row=row, col=col, freq=freq, mode=mode, is_blur=False
     )

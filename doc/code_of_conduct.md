@@ -73,6 +73,7 @@ Rule of naming file and folder in our project.
 -	2nd Wrong Example: `quick_sort(ls)`
 -	2nd Wrong Example: `quick_sort(ls, 0)`
 -	2nd Wrong Example: `quick_sort(ls, start = 0)`
+15. You can use `############################` for separating the Python file as multiple sections depending on how you separate it.
 
 # Naming Meaning
 
