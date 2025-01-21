@@ -1,24 +1,24 @@
 import cv2
 import numpy as np
-from ImgProcess_I.Image import Image
-from ImgProcess.Blur import MeanBlur, GaussBlur, BilateralBlur
-from ImgProcess.Morphology import (
-    ThinFont,
-    ThickFont,
-    RemoveNoise,
-    Dilate,
-    Erode,
-    Opening,
-    Canny,
+from img_process.img_process_img import img_process_img
+from img_process.blur import mean_blur, gauss_blur, bilateral_blur
+from img_process.morphology import (
+    thin_font,
+    thick_font,
+    remove_noise,
+    dilate,
+    erode,
+    opening,
+    canny,
 )
-from ImgProcess.Contour import DetectContourImg
-from ImgProcess.Threshold import Threshold, AdaptiveThreshold
-from ImgProcess.Kernel2D import SharpKernel2D
-from ImgProcess.FFT2D import FFTBlur, FFTSharp, GetFFT, GetFFTImage
-from ImgProcess.Utility import InvertedImage
+from img_process.contour import detect_contour_img
+from img_process.threshold import threshold, adaptive_threshold
+from img_process.kernel2d import sharp_kernel2d
+from img_process.fft2d import fft_blur, fft_sharp, get_fft, get_fft_image
+from img_process.utility import inverted_image
 
 
-class GrayImage(Image):
+class GrayImage(img_process_img):
     def __init__(self, img):
         self.img = img
         super().__init__(self.img)

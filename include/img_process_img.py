@@ -1,70 +1,69 @@
 import cv2
 import numpy as np
-from ImgProcess.Show import Show, Save
-from ImgProcess.Zoom import RemoveBorders, Zoom, CreateBorders, Crop
-from ImgProcess.Rotate import Rotate
+from img_process.show import show, save
+from img_process.zoom import remove_borders, zoom, create_borders, crop
+from img_process.rotate import rotate
 
-
-class Image:
+class img_process_img:
     def __init__(self, img: np.ndarray | str):
         if type(img) == str:
-            self.img = cv2.imread(img)
+            self.img = cv2.imread(filename=img)
         elif len(img.shape) == 3:
-            self.img = np.copy(img)
+            self.img = np.copy(a=img)
         elif len(img.shape) == 2:
-            self.img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
+            self.img = cv2.cvtColor(src=img, code= cv2.COLOR_GRAY2RGB)
         else:
-            print("Error: the input img is invalid.")
+            print(values="Error: the input img is invalid.")
             print(
-                "len(img.shape) in [2, 3] or type(img) == str should be true."
+                values="len(img.shape) in [2, 3] or type(img) == str should be true."
             )
             print(
-                "Reported by ImageProcessing_Biew / GrayImage.py / class Image / def __init__(self, img)"
+                values="Reported by include/img_process_img.py/class img_process_img/def __init__()"
             )
 
     ########################################################################################################################################################
-    # Get Data
+    # get data
 
-    def GetImg(self):
+    def get_img(self) -> np.ndarray:
         return self.img
 
-    def GetColorImg(self):
-        return Image(self.img)
+    def get_color_img(self) -> np.ndarray:
+        return img_process_img(img=self.img)
 
-    def Show(self, title: str = "Image"):
-        Show(self.img, title)
+    def show(self, title: str = "image") -> None:
+        show(img=self.img, title=title)
 
-    def Save(
+    def save(
         self,
-        img_title: str = "Image",
-        folder: str = "Image",
+        img_title: str = "image",
+        folder: str = "image",
         fileformat: str = "jpg",
-    ):
-        Save(self.img, img_title, folder, fileformat)
+    ) -> None:
+        save(img=self.img, img_title=img_title, folder=folder, fileformat=fileformat)
 
-    def shape(self):
+    def shape(self) -> tuple:
         return self.img.shape
 
     ########################################################################################################################################################
     # Edit Data
 
-    def Zoom(self, zoom: int = 1):
-        self.img = Zoom(self.img, zoom)
+    def zoom(self, zooms: int = 1) -> None:
+        self.img = zoom(img=self.img, zoom=zooms)
 
-    def RemoveBorders(self):
-        self.img = RemoveBorders(self.img)
+    def remove_borders(self) -> None:
+        self.img = remove_borders(img=self.img)
 
-    def Crop(
+    def crop(
         self,
         x: int | None = None,
         y: int | None = None,
         width: int | None = None,
         height: int | None = None,
-    ):
-        self.img = Crop(self.img, x, y, width, height)
+    ) -> None:
+        self.img = crop(img=self.img, x=x, y=y, width=width, height=height)
 
-    def CreateBorders(self, size: int = 50):
-        self.img = CreateBorders(self.img, size)
+    def create_borders(self, size: int = 50) -> None:
+        self.img = create_borders(img=self.img, size=size)
 
-    def Rotate(self, angle: int | None = None):
-        self.img = Rotate(self.img, angle)
+    def rotate(self, angle: int | None = None) -> None:
+        self.img = rotate(img=self.img, angle=angle)
