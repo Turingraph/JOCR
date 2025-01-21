@@ -22,7 +22,8 @@ class img_process_img:
             )
 
     ########################################################################################################################################################
-    # get data
+    # read img
+    # img_process/show.py
 
     def get_img(self) -> np.ndarray:
         return self.img
@@ -45,7 +46,8 @@ class img_process_img:
         return self.img.shape
 
     ########################################################################################################################################################
-    # Edit Data
+    # edit img
+    # img_process/(zoom.py, rotate.py)
 
     def zoom(self, zooms: int = 1) -> None:
         self.img = zoom(img=self.img, zoom=zooms)

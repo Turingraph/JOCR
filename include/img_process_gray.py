@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from img_process.img_process_img import img_process_img
+from include.img_process_img import img_process_img
 from img_process.blur import mean_blur, gauss_blur, bilateral_blur
 from img_process.morphology import (
     thin_font,
@@ -12,138 +12,139 @@ from img_process.morphology import (
     canny,
 )
 from img_process.contour import detect_contour_img
-from img_process.threshold import threshold, adaptive_threshold
-from img_process.kernel2d import sharp_kernel2d
-from img_process.fft2d import fft_blur, fft_sharp, get_fft, get_fft_image
+from img_process.threshold import threshold, threshold_adapt
+from img_process.kernel_2d import sharp_kernel_2d
+from img_process.fft_2d import fft_blur, fft_sharp, get_fft, get_fft_image
 from img_process.utility import inverted_image
 
 
-class GrayImage(img_process_img):
-    def __init__(self, img):
+class img_process_gray(img_process_img):
+    def __init__(self, img:np.ndarray | str):
         self.img = img
         super().__init__(self.img)
         if type(img) == str:
-            self.img = cv2.cvtColor(cv2.imread(img), cv2.COLOR_BGR2GRAY)
+            self.img = cv2.cvtColor(src=cv2.imread(img), code=cv2.COLOR_BGR2GRAY)
         elif len(img.shape) == 3:
-            self.img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            self.img = cv2.cvtColor(src=img, code=cv2.COLOR_BGR2GRAY)
         elif len(img.shape) == 2:
-            self.img = np.copy(img)
+            self.img = np.copy(a=img)
         else:
-            print("Error: the input img is invalid.")
+            print(values="Error: the input img is invalid.")
             print(
-                "len(img.shape) in [2, 3] or type(img) == str should be true."
+                values="len(img.shape) in [2, 3] or type(img) == str should be true."
             )
             print(
-                "Reported by ImageProcessing_Biew / GrayImage.py / class GrayImage / def __init__(self, img)"
+                values="Reported by include/img_process_gray.py/class img_process_gray/def __init__()"
             )
 
     ########################################################################################################################################################
-    # Morphology.py
+    # img_process/morphology.py
 
-    def RemoveNoice(self):
-        self.img = RemoveNoise(self.img)
+    def remove_noice(self) -> None:
+        self.img = remove_noise(img=self.img)
 
-    def ThinFont(self):
-        self.img = ThinFont(self.img)
+    def thin_font(self) -> None:
+        self.img = thin_font(img=self.img)
 
-    def ThickFont(self):
-        self.img = ThickFont(self.img)
+    def thick_font(self) -> None:
+        self.img = thick_font(img=self.img)
 
-    def Dilate(self, kernel: np.ndarray = np.ones((5, 5), np.uint8)):
-        self.img = Dilate(self.img, kernel)
+    def dilate(self, kernel: np.ndarray = np.ones(shape=(5, 5), dtype= np.uint8)) -> None:
+        self.img = dilate(img=self.img, kernel= kernel)
 
-    def Erode(self, kernel: np.ndarray = np.ones((5, 5), np.uint8)):
-        self.img = Erode(self.img, kernel)
+    def erode(self, kernel: np.ndarray = np.ones(shape=(5, 5), dtype=np.uint8)) -> None:
+        self.img = erode(img=self.img, kernel=kernel)
 
-    def Opening(self, kernel: np.ndarray = np.ones((5, 5), np.uint8)):
-        self.img = Opening(self.img, kernel)
+    def opening(self, kernel: np.ndarray = np.ones(shape=(5, 5), dtype=np.uint8)) -> None:
+        self.img = opening(img=self.img, kernel=kernel)
 
-    def Canny(self, c1: int = 100, c2: int = 200):
-        self.img = Canny(self.img, c1, c2)
+    def canny(self, c1: int = 100, c2: int = 200) -> None:
+        self.img = canny(img=self.img, c1=c1, c2=c2)
 
-    def DetectContourImg(
+    def detect_contour_img(
         self,
         threshold_px: None | int = None,
-        kernel: np.ndarray = np.ones((2, 30)),
+        kernel: np.ndarray = np.ones(shape=(2, 30)),
         kernel_area: int = 9,
-    ):
-        self.img = DetectContourImg(
-            self.img,
-            threshold_px,
-            kernel,
-            kernel_area,
+    ) -> None:
+        self.img = detect_contour_img(
+            img=self.img,
+            threshold_px=threshold_px,
+            kernel=kernel,
+            kernel_area=kernel_area,
         )
 
     ########################################################################################################################################################
-    # Threshold.py
+    # img_process/threshold.py
 
-    def Threshold(
+    def threshold(
         self,
         method: int = cv2.THRESH_BINARY,
         threshold_px: int | None = None,
         max_px: int = 255,
-    ):
-        transformation = Threshold(method, threshold_px, max_px)
-        self.img = transformation.Edit(self.img)
+    ) -> None:
+        transformation = threshold(method=method, threshold_px=threshold_px, max_px=max_px)
+        self.img = transformation.edit(img=self.img)
 
-    def AdaptiveThreshold(
+    def threshold_adapt(
         self,
         method: int = cv2.THRESH_BINARY,
         adaptive_method: int = cv2.ADAPTIVE_THRESH_MEAN_C,
         kernel_area: int = 11,
         constant: int = 2,
         max_px: int = 255,
-    ):
-        transformation = AdaptiveThreshold(
-            method, adaptive_method, kernel_area, constant, max_px
+    ) -> None:
+        transformation = threshold_adapt(
+            method=method, adaptive_method=adaptive_method, kernel_area=kernel_area, constant=constant, max_px=max_px
         )
-        self.img = transformation.Edit(self.img)
+        self.img = transformation.edit(img=self.img)
 
     ########################################################################################################################################################
-    # Kernel2D.py
+    # img_process/kernel_2D.py
 
-    def SharpFilter2D(
+    def sharp_filter2d(
         self, ls: list[float] = [-0.1, -5], center_px: int | None = None
-    ):
-        kernel2d = SharpKernel2D(ls, center_px)
-        self.img = cv2.filter2D(self.img, -1, kernel2d)
+    ) -> None:
+        kernel2d = sharp_kernel_2d(ls=ls, center_px=center_px)
+        self.img = cv2.filter2D(src=self.img, ddepth=-1, kernel=kernel2d)
 
     ########################################################################################################################################################
-    # Blur.py
+    # img_process/blur.py
 
-    def MeanBlur(self, kernel_area: int = 15, scalar: None | int = None):
-        self.img = MeanBlur(self.img, kernel_area, scalar)
+    def mean_blur(self, kernel_area: int = 15, scalar: None | int = None) -> None:
+        self.img = mean_blur(img=self.img, kernel_area=kernel_area, scalar=scalar)
 
-    def GaussBlur(self, kernel_area: int = 15):
-        self.img = GaussBlur(self.img, kernel_area)
+    def gauss_blur(self, kernel_area: int = 15) -> None:
+        self.img = gauss_blur(img=self.img, kernel_area=kernel_area)
 
-    def BilateralBlur(self, kernel_area: int = 15, effect: int = 75):
-        self.img = BilateralBlur(self.img, kernel_area, effect)
+    def bilateral_blur(self, kernel_area: int = 15, effect: int = 75) -> None:
+        self.img = bilateral_blur(img=self.img, kernel_area=kernel_area, effect=effect)
 
     ########################################################################################################################################################
-    # FFT2D.py
+    # img_process/fft_2d.py
 
-    def FFTBlur(
+    def fft_blur(
         self, row: int, col: int, freq: int = 0, mode: int = cv2.MORPH_RECT
-    ):
-        self.img = FFTBlur(self.img, row, col, freq=freq, mode=mode)
+    ) -> None:
+        self.img = fft_blur(img=self.img, row=row, col= col, freq=freq, mode=mode)
 
-    def FFTSharp(
+    def fft_sharp(
         self, row: int, col: int, freq: int = 0, mode: int = cv2.MORPH_RECT
-    ):
-        self.img = FFTSharp(self.img, row, col, freq=freq, mode=mode)
+    ) -> None:
+        self.img = fft_sharp(img=self.img, row=row, col=col, freq=freq, mode=mode)
 
-    def GetFFT(self):
-        return GetFFT(self.img)
+    def get_fft(self) -> np.ndarray:
+        return get_fft(img=self.img)
 
-    def GetFFTImage(self):
-        return GrayImage(GetFFTImage(self.img))
+    # https://stackoverflow.com/questions/61636701/is-there-a-way-in-a-class-function-to-return-an-instance-of-the-class-itself
+    def get_fft_image(self) -> "img_process_gray":
+        return img_process_gray(img=get_fft_image(img=self.img))
 
-    def GetFFTArray(self):
-        return GetFFTImage(self.img)
+    def get_fft_array(self) -> np.ndarray:
+        return get_fft_image(img=self.img)
 
     ########################################################################################################################################################
-    # ImageUtility.py
+    # img_process/utility.py
 
-    def InvertedImage(self):
-        self.img = InvertedImage(self.img)
+    def inverted_image(self) -> None:
+        self.img = inverted_image(img=self.img)
