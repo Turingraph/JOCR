@@ -1,5 +1,5 @@
 # My Ignore folder
-tests/random_page
+tests/etc
 trash/
 
 # Ignore .venv
