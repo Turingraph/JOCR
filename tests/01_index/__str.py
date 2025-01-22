@@ -10,19 +10,16 @@ sys.path.append(parent)
 
 ###############################################################################################################
 
-from ColumnSegmentation import ColumnSegmentation
-import ImgProcess.Show as show
+import img_to_str.show as shw
+from img_to_str.ReadColumn import SaveColumnText, SaveMultiColumnText
 
-path = "/Users/imac/Desktop/JOCR_SOBA/exPyDH02_Index/OriginalImage/img.jpeg"
-img = show.ReadImage(path)
-ColumnSegmentation(
-    img,
-    width=20,
-    height=200,
+path = parent + "/Examples/02_Index/OriginalImage/img.jpeg"
+
+ocrout = SaveMultiColumnText(
+    path,
+    width_and_height=[[20, 200]],
     is_show=True,
-    img_title="ColumnSegmentation",
-    is_multiple_imgs=True,
+    title="TextFromImgWithColumns01",
 )
-"""
-python3 text02.py
-"""
+ocrout = str(ocrout)
+read.SaveText(ocrout, "textresult02")
