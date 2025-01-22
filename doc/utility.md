@@ -1,8 +1,6 @@
 # Introduction
 
-The purpose of this file is to show how to use `pip`, Python virtual environment and Python library in Ubuntu Linux distribution.
-
-It is recommended to read `doc/python_virtual_environment.md` before read this file
+This file is used for documenting about other additional information and coding tutorial.
 
 # How to solve pip install error This environment is externally managed ?
 
@@ -53,3 +51,10 @@ sure you have python3-full installed.
 Reference
 *   How to solve pip install error This environment is externally managed.
 *   https://youtu.be/5jsr42KIh34?si=hj4LoikKcGRS66u7
+
+# How to `git commit` one folder ?
+
+*   `git commit -m 'message' -- my-dir`
+
+Reference
+*   https://stackoverflow.com/questions/5862233/commit-changes-only-in-one-directory-in-git

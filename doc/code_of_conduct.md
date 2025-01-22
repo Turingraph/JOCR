@@ -65,24 +65,8 @@ Rule of naming file and folder in our project.
 -	Wrong Example: `def dot_product(vec_00: np.ndarray, vec_01: np.ndarray):`
 -	Wrong Example: `def dot_product(vec_00, vec_01) -> np.ndarray:`
 -	Wrong Example: `def dot_product(vec_00, vec_01):`
-14.	When using function with multiple paratemers or class with multiple attributes, dev should use `parameter_name = value` 
--	1st Correct Example: `vec_y = dot_product(vec_00 = vec_v, vec_01 = vec_u)`
--	1st Wrong Example: `vec_y = dot_product(vec_v, vec_u)`
--	2nd Correct Example: `quick_sort(ls = ls)`
--	2nd Correct Example: `quick_sort(ls = ls, start = 0)`
--	2nd Wrong Example: `quick_sort(ls)`
--	2nd Wrong Example: `quick_sort(ls, 0)`
--	2nd Wrong Example: `quick_sort(ls, start = 0)`
--	3rd Correct Example: `np.ones(shape = my_shape)`
--	3rd Wrong Example: `np.ones(my_shape)`
--	4th Correct Example: `len(ls)`
--	4th Correct Example: `len(obj = ls)`
-15. You can use `############################` for separating the Python file as multiple sections depending on how you separate it.
-16. Do not specify the output type of OOP constructure and the input type of parameter `self` in class.
-17. In case where specifying the parameter, cause error, it is allow to not specify parameter in function explicitly
--   Example: `isinstance(obj = angle, classinfo = (int, float))` cause `TypeError: isinstance() takes no keyword arguments` error
--   Solution: use `isinstance(angle, (int, float))` instead.
--   Many docs and tutorials erroneously specify the syntax (https://stackoverflow.com/questions/24463202/typeerror-get-takes-no-keyword-arguments)
+14. You can use `############################` for separating the Python file as multiple sections depending on how you separate it.
+15. Do not specify the output type of OOP constructure and the input type of parameter `self` in class.
 
 # Naming Meaning
 
@@ -110,5 +94,7 @@ Meaning
 *   https://stackoverflow.com/questions/152514/how-do-i-rename-all-folders-and-files-to-lowercase-on-linux
 5.  Code formatting with Black — Perfect Python
 *   https://youtu.be/A6S2nZAXgT8?si=q3p5JizFv9XSQ7Kc
+6.  Basic Git Tutorial
+*   https://colab.research.google.com/drive/1ERz9tNhId3gBNsxGpvRWnqfY6x0LJFs-?usp=sharing
 
 For anyone who want to contribute our project, you can also make the script that help us automate coding format, thank you for your contribution.
