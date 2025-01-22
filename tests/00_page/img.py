@@ -20,7 +20,3 @@ img.rotate()
 img.threshold()
 img.show()
 img.save()
-
-"""
-python3 editimg.py
-"""

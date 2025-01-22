@@ -23,7 +23,3 @@ name = ["origin", "modified"]
 for i in range(len(path)):
     img = img_process_img(img = (parent + path[i])).img
     save_img_text(img=img, title=name[i])
-
-"""
-python3 Image2Text.py
-"""
