@@ -10,6 +10,10 @@ It is intended for
 -	Text Language detection model
 -   other NLP Model
 
+# Status
+
+This project is in the MVP development process. For anyone who want to contribute our project in MVP version, you can read `doc/issue.md`. Thank you.
+
 # MVP (Minimum Viable Product)
 
 Expected Feature
