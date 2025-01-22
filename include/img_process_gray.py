@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from include.img_process_img import img_process_img
+from include.img_process import img_process
 from img_process.blur import mean_blur, gauss_blur, bilateral_blur
 from img_process.morphology import (
     thin_font,
@@ -16,26 +16,23 @@ from img_process.threshold import threshold, threshold_adapt
 from img_process.kernel_2d import sharp_kernel_2d
 from img_process.fft_2d import fft_blur, fft_sharp, get_fft, get_fft_image
 from img_process.utility import inverted_image
+from typing import Self
 
-
-class img_process_gray(img_process_img):
-    def __init__(self, img:np.ndarray | str):
-        self.img = img
-        super().__init__(self.img)
-        if type(img) == str:
+class img_process_gray(img_process):
+    def __init__(self, img: Self | np.ndarray | str):
+        if type(img) == Self:
+            self.img = img.img
+        elif type(img) == str:
             self.img = cv2.cvtColor(src=cv2.imread(img), code=cv2.COLOR_BGR2GRAY)
-        elif len(img.shape) == 3:
-            self.img = cv2.cvtColor(src=img, code=cv2.COLOR_BGR2GRAY)
-        elif len(img.shape) == 2:
-            self.img = np.copy(a=img)
+        elif type(img) == np.ndarray:
+            if len(img.shape) == 3:
+                self.img = cv2.cvtColor(src=img, code=cv2.COLOR_RGB2GRAY)
+            elif len(img.shape) == 2:
+                self.img = np.copy(img)
+            else:
+                raise ValueError("Error: Invalid NumPy array. len(img.shape) must be 2 or 3.")
         else:
-            print(values="Error: the input img is invalid.")
-            print(
-                values="len(img.shape) in [2, 3] or type(img) == str should be true."
-            )
-            print(
-                values="Reported by include/img_process_gray.py/class img_process_gray/def __init__()"
-            )
+            raise TypeError("Error: Input must be an instance of 'img_process_img', a NumPy array, or a file path.")
 
     ########################################################################################################################################################
     # img_process/morphology.py
@@ -140,11 +137,15 @@ class img_process_gray(img_process_img):
     def get_fft_image(self) -> "img_process_gray":
         return img_process_gray(img=get_fft_image(img=self.img))
 
-    def get_fft_array(self) -> np.ndarray:
-        return get_fft_image(img=self.img)
-
     ########################################################################################################################################################
     # img_process/utility.py
 
     def inverted_image(self) -> None:
         self.img = inverted_image(img=self.img)
+
+    ########################################################################################################################################################
+    def get_gray_img(self):
+        return self.img
+    
+    def get_color_img(self):
+        return cv2.cvtColor(src=self.img, code=cv2.COLOR_GRAY2RGB)

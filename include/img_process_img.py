@@ -1,71 +1,29 @@
 import cv2
 import numpy as np
-from img_process.show import show, save
-from img_process.zoom import remove_borders, zoom, create_borders, crop
-from img_process.rotate import rotate
+from include.img_process import img_process
+# https://www.reddit.com/r/vscode/comments/19eqplp/python_typing_issue_unsupported_operand_types_for/?rdt=43767
+from typing import Self
 
-class img_process_img:
-    def __init__(self, img: np.ndarray | str):
-        if type(img) == str:
+class img_process_img(img_process):
+    def __init__(self, img: Self | np.ndarray | str):
+        if type(img) == Self:
+            self.img = np.copy(img.img)
+        elif type(img) == str:
             self.img = cv2.imread(filename=img)
-        elif len(img.shape) == 3:
-            self.img = np.copy(a=img)
-        elif len(img.shape) == 2:
-            self.img = cv2.cvtColor(src=img, code= cv2.COLOR_GRAY2RGB)
+            if self.img is None:
+                raise ValueError(f"Error: The file at path '{img}' could not be loaded.")
+        elif type(img) == np.ndarray:
+            if len(img.shape) == 3:
+                self.img = np.copy(img)
+            elif len(img.shape) == 2:
+                self.img = cv2.cvtColor(src=img, code=cv2.COLOR_GRAY2RGB)
+            else:
+                raise ValueError("Error: Invalid NumPy array. len(img.shape) must be 2 or 3.")
         else:
-            print(values="Error: the input img is invalid.")
-            print(
-                values="len(img.shape) in [2, 3] or type(img) == str should be true."
-            )
-            print(
-                values="Reported by include/img_process_img.py/class img_process_img/def __init__()"
-            )
+            raise TypeError("Error: Input must be an instance of 'img_process_img', a NumPy array, or a file path.")
 
-    ########################################################################################################################################################
-    # read img
-    # img_process/show.py
-
-    def get_img(self) -> np.ndarray:
+    def get_gray_img(self):
+        return cv2.cvtColor(src=self.img, code=cv2.COLOR_RGB2GRAY)
+    
+    def get_color_img(self):
         return self.img
-
-    def get_color_img(self) -> np.ndarray:
-        return img_process_img(img=self.img)
-
-    def show(self, title: str = "image") -> None:
-        show(img=self.img, title=title)
-
-    def save(
-        self,
-        img_title: str = "image",
-        folder: str = "image",
-        fileformat: str = "jpg",
-    ) -> None:
-        save(img=self.img, img_title=img_title, folder=folder, fileformat=fileformat)
-
-    def shape(self) -> tuple:
-        return self.img.shape
-
-    ########################################################################################################################################################
-    # edit img
-    # img_process/(zoom.py, rotate.py)
-
-    def zoom(self, zooms: int = 1) -> None:
-        self.img = zoom(img=self.img, zoom=zooms)
-
-    def remove_borders(self) -> None:
-        self.img = remove_borders(img=self.img)
-
-    def crop(
-        self,
-        x: int | None = None,
-        y: int | None = None,
-        width: int | None = None,
-        height: int | None = None,
-    ) -> None:
-        self.img = crop(img=self.img, x=x, y=y, width=width, height=height)
-
-    def create_borders(self, size: int = 50) -> None:
-        self.img = create_borders(img=self.img, size=size)
-
-    def rotate(self, angle: int | None = None) -> None:
-        self.img = rotate(img=self.img, angle=angle)

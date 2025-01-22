@@ -6,5 +6,5 @@ def hello_world() -> None:
 def print_path() -> None:
     j = 0
     for i in sys.path:
-        print(values=j, end="\t" + i)
+        print(j, "\t" + i)
         j += 1
