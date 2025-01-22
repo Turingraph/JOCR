@@ -97,10 +97,10 @@ Each directory of `tests/` contains 5 components
 * This subdirectory contains output image directory.
 3. `str_out/`
 * This subdirectory contains string text output directory.
-4. `edit_img.py`
+4. `img.py`
 * `img/ -> img_out/`
 * It displays and converts input image from `img/` to output image inside `img_out/`.
-5. `img_to_str.py`
+5. `str.py`
 * `img/, img_out/ -> str_out/`
 * It converts image from `img/` and/or `img_out/`, to create output text file inside `str_out/`.
 
@@ -108,7 +108,7 @@ Note that
 1. Some directory have multiple subdirectorys and/or Python files with the same name but with different numbers, e.g.
 * `01_index/` contains `img_out_00/` and `img_out_01/`
 2. Some directory might not have all of the mentioned 5 components
-* `fft/` directory does not contains `img_to_str.py` and `str_out/`
+* `fft/` directory does not contains `str.py` and `str_out/`
 
 # `img_process` (image Processing)
 
