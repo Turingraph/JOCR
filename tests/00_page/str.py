@@ -10,17 +10,20 @@ sys.path.append(parent)
 
 ###############################################################################################################
 
-from include.img_process_gray import img_process_gray
-import cv2
+from img_to_str.show import save_img_text
+from include.img_process_img import img_process_img
 
-path = parent + "/tests/00_page/img/img.jpg"
+path = [
+    "/tests/00_page/img/img.jpg",
+    "/tests/00_page/img_out/img_out.jpg",
+]
 
-img = img_process_gray(path)
-img.zoom(-1.23)
-img.rotate()
-img.threshold()
-img.show()
+name = ["origin", "modified"]
+
+for i in range(len(path)):
+    img = img_process_img(img = (parent + path[i])).img
+    save_img_text(img=img, title=name[i])
 
 """
-python3 editimg.py
+python3 Image2Text.py
 """

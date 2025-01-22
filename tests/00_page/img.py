@@ -10,19 +10,17 @@ sys.path.append(parent)
 
 ###############################################################################################################
 
-import ReadText as read
+from include.img_process_gray import img_process_gray
 
-path = [
-    "/Examples/01_Page/Img/img.jpg",
-    "/Examples/01_Page/ImgOut/OtsuBinaryPx.jpg",
-    "/Examples/01_Page/ImgOut/ThickFont.jpg",
-]
+path = parent + "/tests/00_page/img/img.jpg"
 
-name = ["Original", "OtsuBinaryPx", "ThickFont"]
-
-for i in range(len(path)):
-    read.SaveTextFromImage(parent + path[i], name[i])
+img = img_process_gray(img=path)
+img.zoom(zooms=-1.23)
+img.rotate()
+img.threshold()
+img.show()
+img.save()
 
 """
-python3 Image2Text.py
+python3 editimg.py
 """
