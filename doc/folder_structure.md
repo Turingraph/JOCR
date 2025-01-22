@@ -67,7 +67,7 @@ it is easier to debug and improve the existing feature without modifying unrelat
 Another recommendation is to avoid using inheritance unless there is a clear reason to do so and parent class has a few unextended child class (child class that does not has another child class)
 because every child classes are depending on parent class, which sometimes make adding new feature 
 without modify the existing code becomes harder (violate Open Closed Principle). The clear exception are
-* `img_process_gray` class of `include/img_process_gray.py` is the only child of `img_process` class of `include/img_process.py`
+* `img_process_gray` and `img_process_img` are only 2 children of `img_process` parent class.
 
 This approach help developers code in SOLID manner.
 

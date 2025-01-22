@@ -79,6 +79,10 @@ Rule of naming file and folder in our project.
 -	4th Correct Example: `len(obj = ls)`
 15. You can use `############################` for separating the Python file as multiple sections depending on how you separate it.
 16. Do not specify the output type of OOP constructure and the input type of parameter `self` in class.
+17. In case where specifying the parameter, cause error, it is allow to not specify parameter in function explicitly
+-   Example: `isinstance(obj = angle, classinfo = (int, float))` cause `TypeError: isinstance() takes no keyword arguments` error
+-   Solution: use `isinstance(angle, (int, float))` instead.
+-   Many docs and tutorials erroneously specify the syntax (https://stackoverflow.com/questions/24463202/typeerror-get-takes-no-keyword-arguments)
 
 # Naming Meaning
 

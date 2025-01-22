@@ -1,7 +1,7 @@
 JOCR coding plan
 1. Changing coding style (1 day, if I use more time than that, use only 5 coding rules and chaning tyle again in 1 day)
 2. Executing and documenting test (1 day, if I use more time that that, delete 1 to 2 sub folders)
-3. Refactor img_process ( 3 days)
+3. Refactor img_process (3 days)
 4. Make img_to_str (1 day)
 5. Make table (3 days, if I use more time than that, ignore it in MVP)
 6. Make front-end with one page (5 days)
