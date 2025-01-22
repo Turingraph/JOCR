@@ -13,13 +13,13 @@ class img_process:
     # read img
     # img_process/show.py
 
-    def show(self, title: str = "image") -> None:
+    def show(self, title: str = "img_out") -> None:
         show(img=self.img, title=title)
 
     def save(
         self,
-        img_title: str = "image",
-        folder: str = "image",
+        img_title: str = "img_out",
+        folder: str = "img_out",
         fileformat: str = "jpg",
     ) -> None:
         save(img=self.img, img_title=img_title, folder=folder, fileformat=fileformat)

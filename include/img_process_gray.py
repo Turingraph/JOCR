@@ -11,10 +11,11 @@ from img_process.morphology import (
     opening,
     canny,
 )
+from img_process.utility import color_img, gray_img
 from img_process.contour import detect_contour_img
 from img_process.threshold import threshold, threshold_adapt
 from img_process.kernel_2d import sharp_kernel_2d
-from img_process.fft_2d import fft_blur, fft_sharp, get_fft, get_fft_image
+#from img_process.fft_2d import fft_blur, fft_sharp, get_fft, get_fft_image
 from img_process.utility import inverted_image
 from typing import Self
 
@@ -25,12 +26,7 @@ class img_process_gray(img_process):
         elif type(img) == str:
             self.img = cv2.cvtColor(src=cv2.imread(img), code=cv2.COLOR_BGR2GRAY)
         elif type(img) == np.ndarray:
-            if len(img.shape) == 3:
-                self.img = cv2.cvtColor(src=img, code=cv2.COLOR_RGB2GRAY)
-            elif len(img.shape) == 2:
-                self.img = np.copy(img)
-            else:
-                raise ValueError("Error: Invalid NumPy array. len(img.shape) must be 2 or 3.")
+            self.img = gray_img(img = img)
         else:
             raise TypeError("Error: Input must be an instance of 'img_process_img', a NumPy array, or a file path.")
 
@@ -117,6 +113,7 @@ class img_process_gray(img_process):
     def bilateral_blur(self, kernel_area: int = 15, effect: int = 75) -> None:
         self.img = bilateral_blur(img=self.img, kernel_area=kernel_area, effect=effect)
 
+    """
     ########################################################################################################################################################
     # img_process/fft_2d.py
 
@@ -136,6 +133,7 @@ class img_process_gray(img_process):
     # https://stackoverflow.com/questions/61636701/is-there-a-way-in-a-class-function-to-return-an-instance-of-the-class-itself
     def get_fft_image(self) -> "img_process_gray":
         return img_process_gray(img=get_fft_image(img=self.img))
+    """
 
     ########################################################################################################################################################
     # img_process/utility.py
@@ -148,4 +146,4 @@ class img_process_gray(img_process):
         return self.img
     
     def get_color_img(self):
-        return cv2.cvtColor(src=self.img, code=cv2.COLOR_GRAY2RGB)
+        return color_img(img = self.img)
