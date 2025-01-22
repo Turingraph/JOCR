@@ -21,9 +21,9 @@ def save_text(
         os.makedirs(name=folder)
     if fileformat[0] == ".":
         fileformat = fileformat[1:]
-    path = os.path.join(a=folder, path=title + "." + fileformat)
+    path = os.path.join(folder, title + "." + fileformat)
     file = open(file=path, mode="w")
-    file.write(s=text)
+    file.write(text)
     file.close()
     if is_show == True:
         print(values=text)
@@ -31,8 +31,8 @@ def save_text(
 
 def save_img_text(
     img:np.ndarray,
-    title:str="textresult",
-    folder:str="text_result",
+    title:str="str_out",
+    folder:str="str_out",
     fileformat:str="txt",
     is_show:bool=False,
 ) -> None:
