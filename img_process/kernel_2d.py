@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-from utility import get_default_option
+from img_process.utility import get_default_option
 
 message = """
 input_options = cv2.MORPH_RECT
@@ -48,12 +48,11 @@ def kernel_2d(
         input = mode, 
         input_options = input_options, 
         message = message)
-    width = width
-    if type(height) == int:
-        height = height
-    else:
+    if height == None:
         height = width
-    return scalar * cv2.getStructuringElement(shape = mode, ksize = (width, height))
+    return scalar * cv2.getStructuringElement(
+        mode, 
+        (width, height))
 
 def sharp_kernel_2d(
     ls: list[float] = [-0.1, -5], center_px: None | float = None

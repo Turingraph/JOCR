@@ -1,7 +1,8 @@
 import numpy as np
 import math
-from kernel_2d import kernel_2d
-from utility import get_size
+from img_process.kernel_2d import kernel_2d
+from img_process.utility import get_size
+from img_process.show import show
 import cv2
 
 """
@@ -52,38 +53,42 @@ def get_ifft(dft: np.ndarray) -> np.ndarray:
 
 
 def get_fft_image(img: np.ndarray) -> np.ndarray:
-    dft = get_fft(dft=img)
+    dft = get_fft(img=img)
     dft = np.abs(dft)
     dft = dft / (255.0**2)
     dft = dft ** (1 / 4)
     return dft
-
 
 ########################################################################################################################################################
 
 
 def private_edit_fft(
     dft: np.ndarray,
-    row: int = None,
+    row: int | None = None,
     col: int | None = None,
     is_blur: bool = True,
     freq: float = 0,
     mode: int = cv2.MORPH_RECT,
 ) -> np.ndarray:
+    dft1 = dft
     # https://numpy.org/doc/stable/reference/generated/numpy.where.html
     # https://stackoverflow.com/questions/56594598/change-1s-to-0-and-0s-to-1-in-numpy-array-without-looping
-    cx = math.floor(x=dft.shape[1] / 2)
-    cy = math.floor(x=dft.shape[0] / 2)
+    cx = math.floor(dft.shape[1] / 2)
+    cy = math.floor(dft.shape[0] / 2)
     row = get_size(size=row, max_size=cx, default_size=0)
     col = get_size(size=col, max_size=cy, default_size=0)
     mask = np.zeros(dft.shape)
     kernel = kernel_2d(width=row * 2, height=col * 2, mode=mode)
     mask[cx - row : cx + row, cy - col : cy + col] = kernel.T
     if is_blur == True:
-        mask = np.where(condition=mask < 1, x=freq, y=1)
+        mask = np.where(mask < 1, freq, 1)
     else:
-        mask = np.where(condition=mask < 1, x=1, y=freq)
-    dft *= mask
+        mask = np.where(mask < 1, 1, freq)
+    dft = dft * mask
+    if (dft==dft1).all():
+        print("SAME")
+    else:
+        print("CALCULUS")
     return dft
 
 
@@ -91,15 +96,17 @@ def edit_fft(
     img: np.ndarray,
     row: int,
     col: int,
+    is_blur: bool,
     freq: float = 0,
     mode: int = cv2.MORPH_RECT,
 ) -> np.ndarray:
     dft = get_fft(img)
-    dft = private_edit_fft(dft=dft, row=row, col=col, freq=freq, mode=mode)
+    #show(get_fft_image(dft), "b dft")
+    dft = private_edit_fft(dft=dft, row=row, col=col, freq=freq, mode=mode, is_blur=is_blur)
+    #show(get_fft_image(dft), "a dft")
     img = get_ifft(dft)
     img = (255 * img).astype(dtype=np.uint8)
     return img
-
 
 def fft_blur(
     img: np.ndarray,

@@ -25,7 +25,7 @@ def set_px(num: int) -> int:
 
 def get_default_option(input: any, input_options: list, message: str) -> any:
     if input not in input_options:
-        print(value=message)
+        print(message)
         return input_options[0]
     else:
         return input
@@ -44,6 +44,22 @@ def get_size(
             return size
     else:
         return default_size
+
+def gray_img(img: np.ndarray) -> np.ndarray:
+    if len(img.shape) == 3:
+        return cv2.cvtColor(src=img, code=cv2.COLOR_RGB2GRAY)
+    elif len(img.shape) == 2:
+        return np.copy(img)
+    else:
+        raise ValueError("Error: Invalid NumPy array. len(img.shape) must be 2 or 3.")
+
+def color_img(img: np.ndarray) -> np.ndarray:
+    if len(img.shape) == 3:
+        img = np.copy(img)
+    elif len(img.shape) == 2:
+        img = cv2.cvtColor(src=img, code=cv2.COLOR_GRAY2RGB)
+    else:
+        raise ValueError("Error: Invalid NumPy array. len(img.shape) must be 2 or 3.")
 
 """
 Reference

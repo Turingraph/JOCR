@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from utility import set_px, get_default_option, odd_area
+from img_process.utility import set_px, get_default_option, odd_area, gray_img
 
 message_00 = """
 threshold class attribute.
@@ -67,7 +67,7 @@ Reference
 source = "Reported by img_process/threshold.py"
 
 message_02 = (
-    + message_00
+    message_00
     + "\n"
     + "\n"
     + message_01
@@ -82,6 +82,7 @@ method_options = [
     cv2.THRESH_TRUNC,
     cv2.THRESH_TOZERO,
     cv2.THRESH_TOZERO_INV,
+    cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU
 ]
 
 class threshold:
@@ -101,13 +102,14 @@ class threshold:
         self.max_px = set_px(num=max_px)
 
     def edit(self, img: np.ndarray) -> np.ndarray:
+        img = gray_img(img = img)
         if type(self.threshold_px) == int:
             return cv2.threshold(
-                img, thresh=self.threshold_px, maxval=self.max_px, type=self.method
+                src=img.astype("uint8"), thresh=self.threshold_px, maxval=self.max_px, type=self.method
             )[1]
         else:
             return cv2.threshold(
-                img, thresh=0, maxval=self.max_px, type=self.method + cv2.THRESH_OTSU
+                src=img.astype("uint8"), thresh=0, maxval=self.max_px, type=self.method + cv2.THRESH_OTSU
             )[1]
 
 
@@ -131,6 +133,7 @@ class threshold_adapt:
         )
 
     def edit(self, img: np.ndarray) -> np.ndarray:
+        img = gray_img(img = img)
         return cv2.adaptiveThreshold(
             src=img,
             maxVal=self.max_px,

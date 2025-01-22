@@ -1,14 +1,15 @@
 import cv2
 import numpy as np
-from utility import odd_kernel_area, get_default_option
+from img_process.utility import odd_area, get_default_option
+from img_process.threshold import threshold
 
-
-def get_contours(dilate_img: np.ndarray) -> list:
+def get_contours(dilate_img: np.ndarray) -> tuple:
     contours, hierarchy = cv2.findContours(
-        image=dilate_img, mode=cv2.RETR_LIST, method=cv2.CHAIN_APPROX_SIMPLE
+        image=dilate_img, 
+        mode=cv2.RETR_LIST, 
+        method=cv2.CHAIN_APPROX_SIMPLE
     )
     return contours
-
 
 def detect_contour_img(
     img: np.ndarray,
@@ -16,18 +17,19 @@ def detect_contour_img(
     kernel: np.ndarray = np.ones(shape=(2, 30)),
     kernel_area: int = 9,
 ) -> np.ndarray:
-    kernel_area = odd_kernel_area(num=kernel_area)
-    img = cv2.GaussianBlur(src=img, ksize=(kernel_area, kernel_area), sigmaY=0)
+    kernel_area = odd_area(num=kernel_area)
+    img = cv2.GaussianBlur(src=img, ksize=(kernel_area, kernel_area), sigmaX=0)
     if threshold_px != None:
-        img = cv2.threshold(
-            src=img, thresh=threshold_px, maxval=255, type=cv2.THRESH_BINARY
-        )[1]
-    img = cv2.threshold(
-        src=img,
-        thresh=0,
-        maxval=255,
-        type=cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU,
-    )[1]
+        thresh = threshold(
+            method=cv2.THRESH_BINARY, 
+            threshold_px=threshold_px,
+            max_px=255)
+        img=thresh.edit(img=img)
+    thresh = threshold(
+        method=cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU, 
+        threshold_px=0,
+        max_px=255)
+    img=thresh.edit(img=img)
     img = cv2.dilate(src=img, kernel=kernel, iterations=1)
     return img
 
@@ -48,12 +50,12 @@ def sort_contours(
     )
     if method in [0, 1, 2, 3]:
         return sorted(
-            iterate=contour,
+            contour,
             key=lambda x: cv2.boundingRect(array=x)[method],
             reverse=is_reverse,
         )
     return sorted(
-        iterate=contour,
-        key=lambda x: cv2.contourArea(array=x),
+        contour,
+        key=lambda x: cv2.contourArea(contour=x),
         reverse=is_reverse,
     )

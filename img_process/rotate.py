@@ -36,7 +36,7 @@ def get_skew_angle(img: np.ndarray) -> int:
     # The angle value always lies between [-90,0).
     # https://theailearner.com/tag/cv2-minarearect/
 
-    min_area_rect = cv2.minAreaRect(point = largest_contour)
+    min_area_rect = cv2.minAreaRect(points = largest_contour)
     angle = min_area_rect[-1]
     if angle < -45:
         angle = 90 + angle
@@ -49,7 +49,7 @@ def get_skew_angle(img: np.ndarray) -> int:
 def rotate(img: np.ndarray, angle: int | None = None) -> np.ndarray:
     (h, w) = img.shape[:2]
     center = (w // 2, h // 2)
-    if not isinstance(obj = angle, class_or_tuple = (int, float)):
+    if not isinstance(angle, (int, float)):
         angle = get_skew_angle(img = img)
     rotation_matrix = cv2.getRotationMatrix2D(center=center, angle=angle, scale=1.0)
     return cv2.warpAffine(

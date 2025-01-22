@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from utility import get_size
+from img_process.utility import get_size
 
 # https://github.com/wjbmattingly/ocr_python_textbook/blob/main/02_02_working%20with%20opencv.ipynb
 
@@ -22,7 +22,7 @@ def zoom(img: np.ndarray, zoom: int = 1) -> np.ndarray:
         center=(img.shape[1] / 2, img.shape[0] / 2), angle=0, scale=abs(zoom)
     )
     result = cv2.warpAffine(
-        src=img, M=rot_mat, dst=img.shape[1::-1], flags=cv2.INTER_LINEAR
+        src=img, M=rot_mat, dsize=img.shape[1::-1], flags=cv2.INTER_LINEAR
     )
     return result
 
