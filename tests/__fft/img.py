@@ -11,10 +11,10 @@ sys.path.append(parent)
 ###############################################################################################################
 
 from include.img_process_gray import img_process_gray
-from include.img_process_img import img_process_img
+from include.img_process_rgb import img_process_rgb
 
 path = parent + "/tests/fft/img/jojo_meme.jpg"
-img = img_process_img(img=path)
+img = img_process_rgb(img=path)
 img.show(title="color")
 img = img_process_gray(img=img.img)
 img.show(title="b&w")
