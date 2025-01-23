@@ -11,7 +11,7 @@ sys.path.append(parent)
 ###############################################################################################################
 
 from img_to_str.show import save_img_text
-from include.img_process_img import img_process_img
+from include.img_process_rgb import img_process_rgb
 
 path = [
     "/tests/00_page/img/img.jpg",
@@ -21,5 +21,5 @@ path = [
 name = ["origin", "modified"]
 
 for i in range(len(path)):
-    img = img_process_img(img = (parent + path[i])).img
+    img = img_process_rgb(img = (parent + path[i])).img
     save_img_text(img=img, title=name[i])
