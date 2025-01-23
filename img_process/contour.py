@@ -38,6 +38,7 @@ def sort_contours(
     contour: list | tuple, reverse: bool = False, method: int = 4
 ) -> list:
     message = """
+-------------------------------------------------------------------------------------------
 img_process/contour.py/def sort_contours
 
 def sort_contours(
@@ -53,6 +54,7 @@ available `method` options
 -   2 = width
 -   3 = height
 -   4 = size
+-------------------------------------------------------------------------------------------
     """
     method = get_options(
         input=method, input_options=[4, 0, 1, 2, 3], message=message
