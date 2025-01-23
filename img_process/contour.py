@@ -17,7 +17,7 @@ def detect_contour_img(
     kernel: np.ndarray = np.ones(shape=(2, 30)),
     ksize: int = 9,
 ) -> np.ndarray:
-    ksize = u_odd(num=ksize)
+    ksize = u_odd(n=ksize)
     img = cv2.GaussianBlur(src=img, ksize=(ksize, ksize), sigmaX=0)
     if thresh != None:
         thresh = threshold(
