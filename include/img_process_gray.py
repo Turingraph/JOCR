@@ -28,7 +28,7 @@ class img_process_gray(img_process):
         elif type(img) == np.ndarray:
             self.img = gray_img(img = img)
         else:
-            raise TypeError("Error: Input must be an instance of 'img_process_img', a NumPy array, or a file path.")
+            raise TypeError("Error: Input must be an instance of 'img_process_gray', a NumPy array, or a file path.")
 
     ########################################################################################################################################################
     # img_process/morphology.py
