@@ -85,31 +85,6 @@ The purpose of `tests/` directory is to
 1. Test if the code works as expected.
 2. Demonstrate how to use our Python script.
 
-`tests/hello_world/` directory 
-1. It is the only sub directory that contains only `h_0.py` and `h_1.py`.
-2. It's purpose is to show how to import Python file from other directory.
-3. It works by `sys.append(parent)`
-
-Each directory of `tests/` contains 5 components
-1. `img/`
-* This subdirectory contains input image files.
-2. `img_out/`
-* This subdirectory contains output image directory.
-3. `str_out/`
-* This subdirectory contains string text output directory.
-4. `img.py`
-* `img/ -> img_out/`
-* It displays and converts input image from `img/` to output image inside `img_out/`.
-5. `str.py`
-* `img/, img_out/ -> str_out/`
-* It converts image from `img/` and/or `img_out/`, to create output text file inside `str_out/`.
-
-Note that
-1. Some directory have multiple subdirectorys and/or Python files with the same name but with different numbers, e.g.
-* `01_index/` contains `img_out_00/` and `img_out_01/`
-2. Some directory might not have all of the mentioned 5 components
-* `fft/` directory does not contains `str.py` and `str_out/`
-
 # `img_process` (image Processing)
 
 This directory contains image processing Python script for processing image, in order to make the Pytesseract OCR output more reliable.
