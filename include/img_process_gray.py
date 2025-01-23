@@ -11,7 +11,7 @@ from img_process.morphology import (
     opening,
     canny,
 )
-from img_process.utility import color_img, gray_img
+from img_process.utility import rgb_img, gray_img
 from img_process.contour import detect_contour_img
 from img_process.threshold import threshold, threshold_adapt
 from img_process.kernel_2d import sharp_kernel_2d
@@ -145,5 +145,5 @@ class img_process_gray(img_process):
     def get_gray_img(self):
         return self.img
     
-    def get_color_img(self):
-        return color_img(img = self.img)
+    def get_rgb_img(self):
+        return rgb_img(img = self.img)

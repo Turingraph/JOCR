@@ -53,7 +53,7 @@ def gray_img(img: np.ndarray) -> np.ndarray:
     else:
         raise ValueError("Error: Invalid NumPy array. len(img.shape) must be 2 or 3.")
 
-def color_img(img: np.ndarray) -> np.ndarray:
+def rgb_img(img: np.ndarray) -> np.ndarray:
     if len(img.shape) == 3:
         img = np.copy(img)
     elif len(img.shape) == 2:
