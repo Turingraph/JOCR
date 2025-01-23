@@ -74,9 +74,9 @@ class img_process_gray(img_process):
         self,
         method: int = cv2.THRESH_BINARY,
         threshold_px: int | None = None,
-        max_px: int = 255,
+        maxval: int = 255,
     ) -> None:
-        transformation = threshold(method=method, threshold_px=threshold_px, max_px=max_px)
+        transformation = threshold(method=method, threshold_px=threshold_px, maxval=maxval)
         self.img = transformation.edit(img=self.img)
 
     def threshold_adapt(
@@ -85,10 +85,10 @@ class img_process_gray(img_process):
         adaptive_method: int = cv2.ADAPTIVE_THRESH_MEAN_C,
         ksize: int = 11,
         constant: int = 2,
-        max_px: int = 255,
+        maxval: int = 255,
     ) -> None:
         transformation = threshold_adapt(
-            method=method, adaptive_method=adaptive_method, ksize=ksize, constant=constant, max_px=max_px
+            method=method, adaptive_method=adaptive_method, ksize=ksize, constant=constant, maxval=maxval
         )
         self.img = transformation.edit(img=self.img)
 

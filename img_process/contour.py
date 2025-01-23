@@ -23,12 +23,12 @@ def detect_contour_img(
         thresh = threshold(
             method=cv2.THRESH_BINARY, 
             threshold_px=threshold_px,
-            max_px=255)
+            maxval=255)
         img=thresh.edit(img=img)
     thresh = threshold(
         method=cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU, 
         threshold_px=0,
-        max_px=255)
+        maxval=255)
     img=thresh.edit(img=img)
     img = cv2.dilate(src=img, kernel=kernel, iterations=1)
     return img
