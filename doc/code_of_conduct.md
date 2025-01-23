@@ -85,6 +85,7 @@ Meaning
 12.	`u_odd(int n)` = function that convert any number to odd positive number (`img_process/utility.py/def u_odd`)
 13.	`maxval` = maximum value
 14.	`thresh` = threshold pixel value
+15. `n` = number
 
 # Additional Learning Resource
 
