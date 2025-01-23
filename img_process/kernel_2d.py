@@ -78,7 +78,7 @@ def sharp_kernel_2d(
         j = ksize - i - 1
         kernel[len(ls)][i] = ls[i]
         kernel[len(ls)][j] = ls[i]
-    if not isinstance(obj = center_px, class_or_tuple = (int, float)):
+    if not isinstance(center_px, (int, float)):
         center_coef = 1
         center_px = 0
         for i in range(stop = len(ls)):
