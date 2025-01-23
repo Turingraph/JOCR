@@ -31,15 +31,15 @@ def get_default_option(input: any, input_options: list, message: str) -> any:
         return input
 
 def get_size(
-    size: int | None, max_size: int | None = None, default_size: int = 0
+    size: int | None, maxval: int | None = None, default_size: int = 0
 ) -> int:
     if type(size) == int:
-        if max_size == None:
-            max_size = size
+        if maxval == None:
+            maxval = size
         if size < 0:
             return 0
-        elif size > max_size:
-            return max_size
+        elif size > maxval:
+            return maxval
         else:
             return size
     else:
