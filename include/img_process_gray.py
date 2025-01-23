@@ -58,13 +58,13 @@ class img_process_gray(img_process):
         self,
         threshold_px: None | int = None,
         kernel: np.ndarray = np.ones(shape=(2, 30)),
-        kernel_area: int = 9,
+        ksize: int = 9,
     ) -> None:
         self.img = detect_contour_img(
             img=self.img,
             threshold_px=threshold_px,
             kernel=kernel,
-            kernel_area=kernel_area,
+            ksize=ksize,
         )
 
     ########################################################################################################################################################
@@ -83,12 +83,12 @@ class img_process_gray(img_process):
         self,
         method: int = cv2.THRESH_BINARY,
         adaptive_method: int = cv2.ADAPTIVE_THRESH_MEAN_C,
-        kernel_area: int = 11,
+        ksize: int = 11,
         constant: int = 2,
         max_px: int = 255,
     ) -> None:
         transformation = threshold_adapt(
-            method=method, adaptive_method=adaptive_method, kernel_area=kernel_area, constant=constant, max_px=max_px
+            method=method, adaptive_method=adaptive_method, ksize=ksize, constant=constant, max_px=max_px
         )
         self.img = transformation.edit(img=self.img)
 
@@ -104,14 +104,14 @@ class img_process_gray(img_process):
     ########################################################################################################################################################
     # img_process/blur.py
 
-    def mean_blur(self, kernel_area: int = 15, scalar: None | int = None) -> None:
-        self.img = mean_blur(img=self.img, kernel_area=kernel_area, scalar=scalar)
+    def mean_blur(self, ksize: int = 15, scalar: None | int = None) -> None:
+        self.img = mean_blur(img=self.img, ksize=ksize, scalar=scalar)
 
-    def gauss_blur(self, kernel_area: int = 15) -> None:
-        self.img = gauss_blur(img=self.img, kernel_area=kernel_area)
+    def gauss_blur(self, ksize: int = 15) -> None:
+        self.img = gauss_blur(img=self.img, ksize=ksize)
 
-    def bilateral_blur(self, kernel_area: int = 15, effect: int = 75) -> None:
-        self.img = bilateral_blur(img=self.img, kernel_area=kernel_area, effect=effect)
+    def bilateral_blur(self, ksize: int = 15, effect: int = 75) -> None:
+        self.img = bilateral_blur(img=self.img, ksize=ksize, effect=effect)
 
     """
     ########################################################################################################################################################

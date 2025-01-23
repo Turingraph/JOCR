@@ -15,10 +15,10 @@ def detect_contour_img(
     img: np.ndarray,
     threshold_px: None | int = None,
     kernel: np.ndarray = np.ones(shape=(2, 30)),
-    kernel_area: int = 9,
+    ksize: int = 9,
 ) -> np.ndarray:
-    kernel_area = odd_area(num=kernel_area)
-    img = cv2.GaussianBlur(src=img, ksize=(kernel_area, kernel_area), sigmaX=0)
+    ksize = odd_area(num=ksize)
+    img = cv2.GaussianBlur(src=img, ksize=(ksize, ksize), sigmaX=0)
     if threshold_px != None:
         thresh = threshold(
             method=cv2.THRESH_BINARY, 

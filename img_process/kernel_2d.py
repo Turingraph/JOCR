@@ -62,20 +62,20 @@ def sharp_kernel_2d(
     # edge detection
     # time : o(n^2)
     # space: o(n^2)
-    kernel_area = len(ls) * 2 + 1
-    kernel = np.ones(shape = (kernel_area, kernel_area))
+    ksize = len(ls) * 2 + 1
+    kernel = np.ones(shape = (ksize, ksize))
     for i in range(stop = len(ls)):
-        j = kernel_area - i - 1
+        j = ksize - i - 1
         kernel[i] = ls[i] * kernel[i]
         kernel[j] = ls[i] * kernel[j]
         for q in range(i):
-            p = kernel_area - q - 1
+            p = ksize - q - 1
             kernel[i][q] = ls[q]
             kernel[i][p] = ls[q]
             kernel[j][q] = ls[q]
             kernel[j][p] = ls[q]
     for i in range(stop = len(ls)):
-        j = kernel_area - i - 1
+        j = ksize - i - 1
         kernel[len(ls)][i] = ls[i]
         kernel[len(ls)][j] = ls[i]
     if not isinstance(obj = center_px, class_or_tuple = (int, float)):

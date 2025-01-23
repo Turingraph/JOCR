@@ -25,7 +25,7 @@ threshold_adapt class attribute.
 2.	additional_method = cv2.ADAPTIVE_THRESH_MEAN_C
 *	cv2.ADAPTIVE_THRESH_MEAN_C
 *	cv2.ADAPTIVE_THRESH_GAUSSIAN_C
-3.	kernel_area = 11
+3.	ksize = 11
 4.	constant = 2
 3.	max_px = 255
 
@@ -46,18 +46,18 @@ THRESHOLD MODE IN CV
 5.	cv2.THRESH_TOZERO_INV
 *	if px < threshold_px then px = px else px = 0
 6.	cv2.ADAPTIVE_THRESH_MEAN_C
-*	Calculating the mean value of the surround pixels within the square kernel_area (width=kernel_area) and use that mean value as the threshold_px
+*	Calculating the mean value of the surround pixels within the square ksize (width=ksize) and use that mean value as the threshold_px
 7.	cv2.ADAPTIVE_THRESH_GAUSSIAN_C
-*	Calculating the "Gaussian" value of the surround pixels within the square kernel_area (width=kernel_area) and use that mean value as the threshold_px
+*	Calculating the "Gaussian" value of the surround pixels within the square ksize (width=ksize) and use that mean value as the threshold_px
 8.	cv2.THRESH_OTSU
 *	Consider an image with only two distinct image values (bimodal image), 
 *	where the histogram would only consist of two peaks. 
 *	A good threshold would be in the middle of those two values. 
 *	Similarly, Otsu's method determines an optimal global threshold value from the image histogram.
 *	Limitation of Otsu Method
-*	1. If object kernel_area is much smaller compared to background kernel_area
+*	1. If object ksize is much smaller compared to background ksize
 *	2. Image is very noisy
-*	3. Image contains kernel_area with different discrete intensities
+*	3. Image contains ksize with different discrete intensities
 *	https://youtu.be/jUUkMaNuHP8?si=QnxBvTdVhQW3VTqR
 
 Reference
@@ -118,12 +118,12 @@ class threshold_adapt:
         self,
         method: int = cv2.THRESH_BINARY,
         adaptive_method: int = cv2.ADAPTIVE_THRESH_MEAN_C,
-        kernel_area: int = 11,
+        ksize: int = 11,
         constant: int = 2,
         max_px: int = 255,
     ):
         self.method = get_default_option(input=method, input_options=method_options, message=message_02)
-        self.kernel_area = odd_area(num=kernel_area)
+        self.ksize = odd_area(num=ksize)
         self.constant = constant
         self.max_px = set_px(num=max_px)
         self.adaptive_method = get_default_option(
@@ -139,6 +139,6 @@ class threshold_adapt:
             maxVal=self.max_px,
             adaptiveMethod=self.adaptive_method,
             thresholdType=self.method,
-            blockSize=self.kernel_area,
+            blockSize=self.ksize,
             C=self.constant,
         )
