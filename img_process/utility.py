@@ -23,7 +23,7 @@ def set_px(n: int) -> int:
     else:
         return n
 
-def get_default_option(input: any, input_options: list, message: str) -> any:
+def get_options(input: any, input_options: list, message: str) -> any:
     if input not in input_options:
         print(message)
         return input_options[0]

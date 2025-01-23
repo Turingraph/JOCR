@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from img_process.utility import set_px, get_default_option, u_odd, gray_img
+from img_process.utility import set_px, get_options, u_odd, gray_img
 
 message_00 = """
 threshold class attribute.
@@ -92,7 +92,7 @@ class threshold:
         thresh: None | int = None,
         maxval: int = 255,
     ):
-        self.method = get_default_option(
+        self.method = get_options(
             input=method, 
             input_options=method_options, 
             message=message_02)
@@ -122,11 +122,11 @@ class threshold_adapt:
         constant: int = 2,
         maxval: int = 255,
     ):
-        self.method = get_default_option(input=method, input_options=method_options, message=message_02)
+        self.method = get_options(input=method, input_options=method_options, message=message_02)
         self.ksize = u_odd(n=ksize)
         self.constant = constant
         self.maxval = set_px(n=maxval)
-        self.adaptive_method = get_default_option(
+        self.adaptive_method = get_options(
             input=adaptive_method,
             input_options=[cv2.ADAPTIVE_THRESH_MEAN_C, cv2.ADAPTIVE_THRESH_GAUSSIAN_C],
             message=message_02,

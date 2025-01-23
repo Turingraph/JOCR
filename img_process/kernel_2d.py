@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-from img_process.utility import get_default_option
+from img_process.utility import get_options
 
 message = """
 input_options = cv2.MORPH_RECT
@@ -44,7 +44,7 @@ def kernel_2d(
     scalar: float = 1,
     mode: int = cv2.MORPH_RECT,
 ) -> np.ndarray:
-    mode = get_default_option(
+    mode = get_options(
         input = mode, 
         input_options = input_options, 
         message = message)

@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from img_process.utility import u_odd, get_default_option
+from img_process.utility import u_odd, get_options
 from img_process.threshold import threshold
 
 def get_contours(dilate_img: np.ndarray) -> tuple:
@@ -45,7 +45,7 @@ def sort_contours(
     * 3 = height
     * 4 = size
     """
-    method = get_default_option(
+    method = get_options(
         input=method, input_options=[4, 0, 1, 2, 3], message=message
     )
     if method in [0, 1, 2, 3]:
