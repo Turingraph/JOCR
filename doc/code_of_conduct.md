@@ -81,6 +81,10 @@ Meaning
 8.	`vec` = vector
 9.	`osd` = Orientation and Script Detection
 10.	`2d` = 2 dimentional (adj.)
+11.	`ksize` = size of kernel
+12.	`u_odd(int n)` = function that convert any number to odd positive number (`img_process/utility.py/def u_odd`)
+13.	`maxval` = maximum value
+14.	`thresh` = threshold pixel value
 
 # Additional Learning Resource
 
