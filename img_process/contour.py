@@ -35,15 +35,24 @@ def detect_contour_img(
 
 
 def sort_contours(
-    contour: list, reverse: bool = False, method: int = 4
+    contour: list | tuple, reverse: bool = False, method: int = 4
 ) -> list:
     message = """
-    method: str | int = 4
-    * 0 = x
-    * 1 = y
-    * 2 = width
-    * 3 = height
-    * 4 = size
+img_process/contour.py/def sort_contours
+
+def sort_contours(
+    contour: list | tuple, 
+    reverse: bool = False, 
+    method: int = 4
+) -> list:
+# This function sort the `contour` list or tuple, based on `method` option.
+
+available `method` options
+-   0 = x
+-   1 = y
+-   2 = width
+-   3 = height
+-   4 = size
     """
     method = get_options(
         input=method, input_options=[4, 0, 1, 2, 3], message=message
