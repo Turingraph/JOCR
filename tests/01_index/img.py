@@ -20,7 +20,7 @@ img = img_process_rgb(img = path)
 img.zoom(1)
 img.show()
 
-dil_img = tour.detect_contour_img(img=img.img, kernel=np.ones((13, 3)))
+dil_img = tour.contour_img(img=img.img, kernel=np.ones((13, 3)))
 dil_img = img_process_gray(img = dil_img)
 dil_img.show(title="default_dilate_image13x3")
 dil_img.save()

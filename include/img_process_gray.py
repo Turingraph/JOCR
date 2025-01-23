@@ -12,7 +12,7 @@ from img_process.morphology import (
     canny,
 )
 from img_process.utility import rgb_img, gray_img
-from img_process.contour import detect_contour_img
+from img_process.contour import contour_img
 from img_process.threshold import threshold, threshold_adapt
 from img_process.kernel_2d import sharp_kernel_2d
 #from img_process.fft_2d import fft_blur, fft_sharp, get_fft, get_fft_image
@@ -54,13 +54,13 @@ class img_process_gray(img_process):
     def canny(self, c1: int = 100, c2: int = 200) -> None:
         self.img = canny(img=self.img, c1=c1, c2=c2)
 
-    def detect_contour_img(
+    def contour_img(
         self,
         thresh: None | int = None,
         kernel: np.ndarray = np.ones(shape=(2, 30)),
         ksize: int = 9,
     ) -> None:
-        self.img = detect_contour_img(
+        self.img = contour_img(
             img=self.img,
             thresh=thresh,
             kernel=kernel,

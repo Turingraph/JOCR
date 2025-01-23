@@ -11,7 +11,7 @@ def get_contours(dilate_img: np.ndarray) -> tuple:
     )
     return contours
 
-def detect_contour_img(
+def contour_img(
     img: np.ndarray,
     thresh: None | int = None,
     kernel: np.ndarray = np.ones(shape=(2, 30)),

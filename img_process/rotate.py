@@ -1,4 +1,4 @@
-from img_process.contour import get_contours, sort_contours, detect_contour_img
+from img_process.contour import get_contours, sort_contours, contour_img
 import numpy as np
 import cv2
 
@@ -20,7 +20,7 @@ def get_skew_angle(img: np.ndarray) -> int:
 
     if len(img.shape) == 3:
         img = cv2.cvtColor(src = img, code = cv2.COLOR_BGR2GRAY)
-    img = detect_contour_img(img = img)
+    img = contour_img(img = img)
 
     #####################################################################################################################
 
