@@ -4,7 +4,7 @@ import numpy as np
 def inverted_image(img: np.ndarray) -> np.ndarray:
     return cv2.bitwise_not(src=img)
 
-def odd_area(num: int) -> int:
+def u_odd(num: int) -> int:
     num = int(num)
     if num < 3:
         return 3

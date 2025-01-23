@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from img_process.utility import odd_area
+from img_process.utility import u_odd
 
 def mean_blur(
         img: np.ndarray, 
@@ -8,7 +8,7 @@ def mean_blur(
         scalar: None | int | float = None
     ) -> np.ndarray:
     # Update each pixel value to average pixel value with in the ksize to Blur image
-    ksize = odd_area(num=ksize)
+    ksize = u_odd(num=ksize)
     if scalar == None:
         scalar = (1 / ksize) ** 2
     kernel = scalar * np.ones(shape=(ksize, ksize))
@@ -26,7 +26,7 @@ def gauss_blur(
     ) -> np.ndarray:
     # Blur the image based in the pixel with in ksize using Gaussian function
     # https://www.geeksforgeeks.org/python-image-blurring-using-opencv/
-    ksize = odd_area(ksize)
+    ksize = u_odd(ksize)
     return cv2.GaussianBlur(src=img, ksize=(ksize, ksize), float=0)
 
 def bilateral_blur(
@@ -35,7 +35,7 @@ def bilateral_blur(
     # Remove the noise and preserve the edge.
     # https://youtu.be/LjbYKWAQA5s?si=1br6Rl9OYkTZQPJB
     # https://www.tutorialspoint.com/opencv/opencv_bilateral_filter.htm
-    ksize = odd_area(ksize)
+    ksize = u_odd(ksize)
     return cv2.bilateralFilter(
         src=img, d=ksize, sigmaColor=effect, sigmaSpace=effect
     )

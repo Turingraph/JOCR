@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from img_process.utility import odd_area, get_default_option
+from img_process.utility import u_odd, get_default_option
 from img_process.threshold import threshold
 
 def get_contours(dilate_img: np.ndarray) -> tuple:
@@ -17,7 +17,7 @@ def detect_contour_img(
     kernel: np.ndarray = np.ones(shape=(2, 30)),
     ksize: int = 9,
 ) -> np.ndarray:
-    ksize = odd_area(num=ksize)
+    ksize = u_odd(num=ksize)
     img = cv2.GaussianBlur(src=img, ksize=(ksize, ksize), sigmaX=0)
     if threshold_px != None:
         thresh = threshold(
