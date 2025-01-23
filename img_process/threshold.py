@@ -28,6 +28,7 @@ available `method` options
 -	cv2.THRESH_TOZERO       (3)
 -	cv2.THRESH_TOZERO_INV   (4)
 -------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------- 
 img_process/threshold.py/class threshold_adapt
 
 class threshold_adapt:
