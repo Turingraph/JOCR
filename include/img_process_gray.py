@@ -16,7 +16,7 @@ from img_process.contour import detect_contour_img
 from img_process.threshold import threshold, threshold_adapt
 from img_process.kernel_2d import sharp_kernel_2d
 #from img_process.fft_2d import fft_blur, fft_sharp, get_fft, get_fft_image
-from img_process.utility import inverted_image
+from img_process.utility import invert_img
 from typing import Self
 
 class img_process_gray(img_process):
@@ -138,8 +138,8 @@ class img_process_gray(img_process):
     ########################################################################################################################################################
     # img_process/utility.py
 
-    def inverted_image(self) -> None:
-        self.img = inverted_image(img=self.img)
+    def invert_img(self) -> None:
+        self.img = invert_img(img=self.img)
 
     ########################################################################################################################################################
     def get_gray_img(self):

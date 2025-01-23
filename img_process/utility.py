@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-def inverted_image(img: np.ndarray) -> np.ndarray:
+def invert_img(img: np.ndarray) -> np.ndarray:
     return cv2.bitwise_not(src=img)
 
 def u_odd(n: int) -> int:
