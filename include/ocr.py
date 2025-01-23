@@ -1,6 +1,7 @@
 from ocr.flag_options import get_oem, get_psm
 from ocr.img_to_str import img_to_str
-#from ocr.osd import osd
+from pytesseract import Output
+from ocr.osd import osd
 from ocr.save_text import save_text
 import numpy as np
 from include.img_process import img_process
@@ -32,4 +33,7 @@ class ocr:
         )
         save_text(self.output, path)
 
-
+    def osd(self, img:np.ndarray|img_process, output_type:str = Output.STRING) -> any:
+        if isinstance(img, img_process):
+            img = img.img
+        return osd(img=img, output_type=output_type, timeout=self.timeout)
