@@ -10,7 +10,7 @@ sys.path.append(parent)
 
 ###############################################################################################################
 
-from img_to_str.show import save_img_text
+from img_to_str.show import save_ocr_text
 from include.img_process_rgb import img_process_rgb
 
 path = [
@@ -22,4 +22,4 @@ name = ["origin", "modified"]
 
 for i in range(len(path)):
     img = img_process_rgb(img = (parent + path[i])).img
-    save_img_text(img=img, title=name[i])
+    save_ocr_text(img=img, title=name[i])

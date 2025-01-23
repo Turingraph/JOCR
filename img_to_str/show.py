@@ -3,7 +3,7 @@ import os
 import numpy as np
 import cv2
 
-def get_img_text(img:str|np.ndarray) -> str:
+def get_ocr_text(img:str|np.ndarray) -> str:
     if type(img) == str:
         img = cv2.imread(filename=img)
     return pytesseract.image_to_string(image=img)
@@ -29,7 +29,7 @@ def save_text(
         print(values=text)
 
 
-def save_img_text(
+def save_ocr_text(
     img:np.ndarray,
     title:str="str_out",
     folder:str="str_out",
@@ -38,7 +38,7 @@ def save_img_text(
 ) -> None:
     # https://www.w3schools.com/python/python_file_write.asp
     # https://www.geeksforgeeks.org/python-check-if-a-file-or-directory-exists/
-    text = get_img_text(img=img)
+    text = get_ocr_text(img=img)
     save_text(
         text=text, title=title, folder=folder, fileformat=fileformat, show=show
     )
