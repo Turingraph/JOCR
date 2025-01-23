@@ -46,7 +46,7 @@ Rule of naming file and folder in our project.
 -	Wrong Example: `vec01`, `vec02`, `vec03` etc.
 10. The counting file and should always start with `_00`, `00_` or `00`.
 -	Correct Example: `00.txt`, `01.txt`, `02.txt`
--	Correct Example: `00_img.py`, `01_str.py`, `02_lang.py_`
+-	Correct Example: `00_img.py`, `01_str.py`, `02_lang.py`
 -	Correct Example: `img_00.py`, `img_01.py`, `img_02.py`
 -	Correct Example: `00_ocr/`, `01_ocr/`, `02_ocr/`
 -	Wrong Example: `0.txt`, `1.txt`, `2.txt`
@@ -60,6 +60,7 @@ Rule of naming file and folder in our project.
 -	Wrong Example: `01_ocr/`, `02_ocr/`, `03_ocr/`
 -	Wrong Example: `0_ocr/`, `1_ocr/`, `2_ocr/`
 -	Wrong Example: `0_img.py`, `1_str.py`, `2_lang.py_`
+-   Note that `00_img.py`, `01_str.py`, `02_lang.py` means the first, second and third testing files are about image, string and language in order.
 11. Every variable that intended to not be modified, should only contains capital letter.
 -	1st Correct Example: `PI = 3.14159`
 -	1st Wrong Example: `pi = 3.14159`, `Pi = 3.14159`
