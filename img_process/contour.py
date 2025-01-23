@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
-from img_process.utility import u_odd, get_options
+from img_process.utility import u_odd
+from utility.utility import get_options
 from img_process.threshold import threshold
 
 def get_contours(dilate_img: np.ndarray) -> tuple:

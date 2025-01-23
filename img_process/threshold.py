@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
-from img_process.utility import set_px, get_options, u_odd, gray_img
+from img_process.utility import set_px, u_odd, gray_img
+from utility.utility import get_options
 
 message = """
 -------------------------------------------------------------------------------------------

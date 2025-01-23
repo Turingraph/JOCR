@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import os
 from PIL import Image
-from img_process.utility import get_options
+from utility.utility import get_options
 
 def show(img: np.ndarray, title: str = "img_out") -> None:
     # https://stackoverflow.com/questions/74546171/image-is-too-big-for-opencv-imshow-window-how-do-i-make-it-smaller

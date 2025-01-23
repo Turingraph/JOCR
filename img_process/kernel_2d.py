@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-from img_process.utility import get_options
+from utility.utility import get_options
 
 message = """
 -------------------------------------------------------------------------------------------
