@@ -59,6 +59,7 @@ Rule of naming file and folder in our project.
 -	Wrong Example: `img_00_.py`, `img_01_.py`, `img_02_.py`
 -	Wrong Example: `01_ocr/`, `02_ocr/`, `03_ocr/`
 -	Wrong Example: `0_ocr/`, `1_ocr/`, `2_ocr/`
+-	Wrong Example: `0_img.py`, `1_str.py`, `2_lang.py_`
 11. Every variable that intended to not be modified, should only contains capital letter.
 -	1st Correct Example: `PI = 3.14159`
 -	1st Wrong Example: `pi = 3.14159`, `Pi = 3.14159`
