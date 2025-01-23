@@ -86,7 +86,7 @@ Meaning
 13.	`maxval` = maximum value
 14.	`thresh` = threshold pixel value
 15. `n` = number
-16. `title` = title of the image
+16. `title` = title of the output (e.g. output image file, OCR text file, Open CV image window etc.)
 
 # Additional Learning Resource
 
