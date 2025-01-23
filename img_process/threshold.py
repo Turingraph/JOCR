@@ -98,8 +98,8 @@ class threshold:
             message=message_02)
         self.thresh = None
         if type(thresh) == int:
-            self.thresh = set_px(num=thresh)
-        self.maxval = set_px(num=maxval)
+            self.thresh = set_px(n=thresh)
+        self.maxval = set_px(n=maxval)
 
     def edit(self, img: np.ndarray) -> np.ndarray:
         img = gray_img(img = img)
@@ -123,9 +123,9 @@ class threshold_adapt:
         maxval: int = 255,
     ):
         self.method = get_default_option(input=method, input_options=method_options, message=message_02)
-        self.ksize = u_odd(num=ksize)
+        self.ksize = u_odd(n=ksize)
         self.constant = constant
-        self.maxval = set_px(num=maxval)
+        self.maxval = set_px(n=maxval)
         self.adaptive_method = get_default_option(
             input=adaptive_method,
             input_options=[cv2.ADAPTIVE_THRESH_MEAN_C, cv2.ADAPTIVE_THRESH_GAUSSIAN_C],

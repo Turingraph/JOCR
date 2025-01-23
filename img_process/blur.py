@@ -8,7 +8,7 @@ def mean_blur(
         scalar: None | int | float = None
     ) -> np.ndarray:
     # Update each pixel value to average pixel value with in the ksize to Blur image
-    ksize = u_odd(num=ksize)
+    ksize = u_odd(n=ksize)
     if scalar == None:
         scalar = (1 / ksize) ** 2
     kernel = scalar * np.ones(shape=(ksize, ksize))

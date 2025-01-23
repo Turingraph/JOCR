@@ -4,24 +4,24 @@ import numpy as np
 def inverted_image(img: np.ndarray) -> np.ndarray:
     return cv2.bitwise_not(src=img)
 
-def u_odd(num: int) -> int:
-    num = int(num)
-    if num < 3:
+def u_odd(n: int) -> int:
+    n = int(n)
+    if n < 3:
         return 3
     else:
-        if num % 2 == 1:
-            return num
+        if n % 2 == 1:
+            return n
         else:
-            return num + 1
+            return n + 1
 
-def set_px(num: int) -> int:
-    num = int(num)
-    if num < 0:
+def set_px(n: int) -> int:
+    n = int(n)
+    if n < 0:
         return 0
-    elif num > 255:
+    elif n > 255:
         return 255
     else:
-        return num
+        return n
 
 def get_default_option(input: any, input_options: list, message: str) -> any:
     if input not in input_options:
