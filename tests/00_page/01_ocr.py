@@ -10,8 +10,10 @@ sys.path.append(parent)
 
 ###############################################################################################################
 
-from ocr.img_to_str import save_ocr_text
+from ocr.save_text import save_text
+from ocr.img_to_str import img_to_str
 from include.img_process_rgb import img_process_rgb
+from include.ocr import ocr
 
 path = [
     "/tests/00_page/img/img.jpg",
@@ -20,6 +22,20 @@ path = [
 
 name = ["origin", "modified"]
 
+###############################################################################################################
+
 for i in range(len(path)):
     img = img_process_rgb(img = (parent + path[i])).img
-    save_ocr_text(img=img, path=name[i])
+    text = img_to_str(img = img, lang='eng')
+    save_text(text=text, path=name[i])
+
+###############################################################################################################
+
+ocr_driver = ocr(
+    lang = 'eng'
+)
+for i in range(len(path)):
+    img = img_process_rgb(img = (parent + path[i])).img
+    ocr_driver.save_text(img = img, path = ["str_out_oop", name[i]])
+
+###############################################################################################################
