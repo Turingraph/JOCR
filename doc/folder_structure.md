@@ -3,7 +3,7 @@
 1.	`doc/`
 2.	`tests/`
 3.	`img_process/`
-4.	`img_to_str/`
+4.	`ocr/`
 5.	`include/`
 6.	`doc_user/`
 7.	`table/`
@@ -89,7 +89,7 @@ The purpose of `tests/` directory is to
 
 This directory contains image processing Python script for processing image, in order to make the Pytesseract OCR output more reliable.
 
-# `img_to_str` (image to string)
+# `ocr` (image to string)
 
 This directory contains Pytesseract script that is used for converting image with text to text file.
 
