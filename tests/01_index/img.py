@@ -12,11 +12,11 @@ sys.path.append(parent)
 
 import img_process.contour as tour
 from include.img_process_gray import img_process_gray
-from include.img_process_img import img_process_img
+from include.img_process_rgb import img_process_rgb
 import numpy as np
 
 path = parent + "/tests/01_index/img/img.jpeg"
-img = img_process_img(img = path)
+img = img_process_rgb(img = path)
 img.zoom(1)
 img.show()
 

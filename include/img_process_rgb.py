@@ -5,7 +5,7 @@ from img_process.utility import color_img, gray_img
 # https://www.reddit.com/r/vscode/comments/19eqplp/python_typing_issue_unsupported_operand_types_for/?rdt=43767
 from typing import Self
 
-class img_process_img(img_process):
+class img_process_rgb(img_process):
     def __init__(self, img: Self | np.ndarray | str):
         if type(img) == Self:
             self.img = np.copy(img.img)
@@ -16,7 +16,7 @@ class img_process_img(img_process):
         elif type(img) == np.ndarray:
             self.img = color_img(img = img)
         else:
-            raise TypeError("Error: Input must be an instance of 'img_process_img', a NumPy array, or a file path.")
+            raise TypeError("Error: Input must be an instance of 'img_process_rgb', a NumPy array, or a file path.")
 
     def get_gray_img(self):
         return gray_img(img = self.img)
