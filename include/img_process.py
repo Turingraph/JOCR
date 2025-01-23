@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from img_process.show import show, save
+from img_process.show import show, save_img
 from img_process.zoom import remove_borders, zoom, create_borders, crop
 from img_process.rotate import rotate
 # https://www.reddit.com/r/vscode/comments/19eqplp/python_typing_issue_unsupported_operand_types_for/?rdt=43767
@@ -16,13 +16,11 @@ class img_process:
     def show(self, title: str = "img_out") -> None:
         show(img=self.img, title=title)
 
-    def save(
+    def save_img(
         self,
-        title: str = "img_out",
-        folder: str = "img_out",
-        fileformat: str = "jpg",
+        path: list[str] | str = ["img_out", "img_out", "jpg"]
     ) -> None:
-        save(img=self.img, title=title, folder=folder, fileformat=fileformat)
+        save_img(img=self.img, path=path)
 
     def shape(self) -> tuple:
         return self.img.shape

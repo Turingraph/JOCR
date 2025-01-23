@@ -13,7 +13,7 @@ def show(img: np.ndarray, title: str = "img_out") -> None:
     cv2.waitKey(delay=0)
     cv2.destroyAllWindows()
 
-def save(
+def save_img(
     img: np.ndarray,
     path: list[str] | str = ["img_out", "img_out", "jpg"],
 ) -> None:
