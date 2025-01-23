@@ -13,7 +13,7 @@ def save_text(
     title:str="text_result",
     folder:str="text_result",
     fileformat:str="txt",
-    is_show:bool=False,
+    show:bool=False,
 )-> None:
     # https://www.w3schools.com/python/python_file_write.asp
     # https://www.geeksforgeeks.org/python-check-if-a-file-or-directory-exists/
@@ -25,7 +25,7 @@ def save_text(
     file = open(file=path, mode="w")
     file.write(text)
     file.close()
-    if is_show == True:
+    if show == True:
         print(values=text)
 
 
@@ -34,11 +34,11 @@ def save_img_text(
     title:str="str_out",
     folder:str="str_out",
     fileformat:str="txt",
-    is_show:bool=False,
+    show:bool=False,
 ) -> None:
     # https://www.w3schools.com/python/python_file_write.asp
     # https://www.geeksforgeeks.org/python-check-if-a-file-or-directory-exists/
     text = get_img_text(img=img)
     save_text(
-        text=text, title=title, folder=folder, fileformat=fileformat, is_show=is_show
+        text=text, title=title, folder=folder, fileformat=fileformat, show=show
     )
