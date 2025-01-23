@@ -10,7 +10,7 @@ sys.path.append(parent)
 
 ###############################################################################################################
 
-import img_to_str.show as shw
+import img_to_str.img_to_str as shw
 from img_to_str.ReadColumn import SaveColumnText, SaveMultiColumnText
 
 path = parent + "/Examples/02_Index/OriginalImage/img.jpeg"

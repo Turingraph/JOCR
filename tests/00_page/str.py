@@ -10,7 +10,7 @@ sys.path.append(parent)
 
 ###############################################################################################################
 
-from img_to_str.show import save_ocr_text
+from img_to_str.img_to_str import save_ocr_text
 from include.img_process_rgb import img_process_rgb
 
 path = [
