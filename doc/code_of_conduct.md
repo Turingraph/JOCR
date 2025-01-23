@@ -46,6 +46,7 @@ Rule of naming file and folder in our project.
 -	Wrong Example: `vec01`, `vec02`, `vec03` etc.
 10. The counting file and should always start with `_00`, `00_` or `00`.
 -	Correct Example: `00.txt`, `01.txt`, `02.txt`
+-	Correct Example: `00_img.py`, `01_str.py`, `02_lang.py_`
 -	Correct Example: `img_00.py`, `img_01.py`, `img_02.py`
 -	Correct Example: `00_ocr/`, `01_ocr/`, `02_ocr/`
 -	Wrong Example: `0.txt`, `1.txt`, `2.txt`
