@@ -14,7 +14,7 @@ def show(img: np.ndarray, title: str = "img_out") -> None:
 
 def save(
     img: np.ndarray,
-    img_title: str = "img_out",
+    title: str = "img_out",
     folder: str = "img_out",
     fileformat: str = "jpg",
 ) -> None:
@@ -24,7 +24,7 @@ def save(
     if fileformat[0] == ".":
         fileformat = fileformat[1:]
     # https://docs.python.org/3/library/os.path.html
-    path = os.path.join(folder, img_title + "." + fileformat)
+    path = os.path.join(folder, title + "." + fileformat)
     # https://numpy.org/doc/2.1/reference/generated/numpy.save.html
     im = Image.fromarray(img)
     im.save(path)

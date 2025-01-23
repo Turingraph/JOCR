@@ -18,11 +18,11 @@ class img_process:
 
     def save(
         self,
-        img_title: str = "img_out",
+        title: str = "img_out",
         folder: str = "img_out",
         fileformat: str = "jpg",
     ) -> None:
-        save(img=self.img, img_title=img_title, folder=folder, fileformat=fileformat)
+        save(img=self.img, title=title, folder=folder, fileformat=fileformat)
 
     def shape(self) -> tuple:
         return self.img.shape
