@@ -35,7 +35,7 @@ def detect_contour_img(
 
 
 def sort_contours(
-    contour: list, is_reverse: bool = False, method: int = 4
+    contour: list, reverse: bool = False, method: int = 4
 ) -> list:
     message = """
     method: str | int = 4
@@ -52,10 +52,10 @@ def sort_contours(
         return sorted(
             contour,
             key=lambda x: cv2.boundingRect(array=x)[method],
-            reverse=is_reverse,
+            reverse=reverse,
         )
     return sorted(
         contour,
         key=lambda x: cv2.contourArea(contour=x),
-        reverse=is_reverse,
+        reverse=reverse,
     )
