@@ -3,12 +3,19 @@ import cv2
 from img_process.utility import get_options
 
 message = """
-input_options = cv2.MORPH_RECT
- * cv2.MORPH_RECT
- * cv2.MORPH_ELLIPSE,
- * cv2.MORPH_CROSS
+-------------------------------------------------------------------------------------------
+img_process/kernel_2d.py/def kernel_2d
 
-# Rectangular Kernel
+def kernel_2d(
+    width: int,
+    height: int | None = None,
+    scalar: float = 1,
+    mode: int = cv2.MORPH_RECT,
+) -> np.ndarray:
+# This function create `np.ndarray` kernel with `(width, height)` as it's `shape`, based on `mode` option
+
+available `mode` options
+-   cv2.MORPH_RECT      =   Rectangular Kernel
 >>> cv2.getStructuringElement(cv2.MORPH_RECT,(5,5))
 array([[1, 1, 1, 1, 1],
        [1, 1, 1, 1, 1],
@@ -16,7 +23,7 @@ array([[1, 1, 1, 1, 1],
        [1, 1, 1, 1, 1],
        [1, 1, 1, 1, 1]], dtype=uint8)
 
-# Elliptical Kernel
+-   cv2.MORPH_ELLIPSE   =   Elliptical Kernel
 >>> cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(5,5))
 array([[0, 0, 1, 0, 0],
        [1, 1, 1, 1, 1],
@@ -24,7 +31,7 @@ array([[0, 0, 1, 0, 0],
        [1, 1, 1, 1, 1],
        [0, 0, 1, 0, 0]], dtype=uint8)
 
-# Cross - shaped Kernel
+-   cv2.MORPH_CROSS     =   Cross Kernel
 >>> cv2.getStructuringElement(cv2.MORPH_CROSS,(5,5))
 array([[0, 0, 1, 0, 0],
        [0, 0, 1, 0, 0],
@@ -33,7 +40,8 @@ array([[0, 0, 1, 0, 0],
        [0, 0, 1, 0, 0]], dtype=uint8)
 
 Reference
-* https://opencv24-python-tutorials.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_morphological_ops/py_morphological_ops.html
+*   https://opencv24-python-tutorials.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_morphological_ops/py_morphological_ops.html
+-------------------------------------------------------------------------------------------
 """
 
 input_options = [cv2.MORPH_RECT, cv2.MORPH_ELLIPSE, cv2.MORPH_CROSS]
