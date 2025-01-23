@@ -44,7 +44,21 @@ Rule of naming file and folder in our project.
 -	Wrong Example: `vec_01`, `vec_02`, `vec_03` etc.
 -	Wrong Example: `vec_0`, `vec_1`, `vec_2` etc.
 -	Wrong Example: `vec01`, `vec02`, `vec03` etc.
-10. Every variable that intended to not be modified, should only contains capital letter.
+10. The counting file and should always start with `_00`, `00_` or `00`.
+-	Correct Example: `00.txt`, `01.txt`, `02.txt`
+-	Correct Example: `img_00.py`, `img_01.py`, `img_02.py`
+-	Correct Example: `00_ocr/`, `01_ocr/`, `02_ocr/`
+-	Wrong Example: `0.txt`, `1.txt`, `2.txt`
+-	Wrong Example: `_00.txt`, `_01.txt`, `_02.txt`
+-	Wrong Example: `00_.txt`, `01_.txt`, `02_.txt`
+-	Wrong Example: `01_.txt`, `02_.txt`, `03_.txt`
+-	Wrong Example: `01.txt`, `02.txt`, `03.txt`
+-	Wrong Example: `img00.py`, `img01.py`, `img02.py`
+-	Wrong Example: `img_01.py`, `img_02.py`, `img_03.py`
+-	Wrong Example: `img_00_.py`, `img_01_.py`, `img_02_.py`
+-	Wrong Example: `01_ocr/`, `02_ocr/`, `03_ocr/`
+-	Wrong Example: `0_ocr/`, `1_ocr/`, `2_ocr/`
+11. Every variable that intended to not be modified, should only contains capital letter.
 -	1st Correct Example: `PI = 3.14159`
 -	1st Wrong Example: `pi = 3.14159`, `Pi = 3.14159`
 -	2nd Correct Example: `EULER = 2.718`
@@ -53,20 +67,39 @@ Rule of naming file and folder in our project.
 -	3rd Wrong Example: `gravity = 9.81`
 -	4th Correct Example: `SPEED_OF_LIGHT = 299792458`
 -	4th Wrong Example: `SPEEDoFlIGHT = 9.81`, `speed_of_light = 9.81`
-11.	It is OK to use Library that does not follow our coding convention.
+12.	It is OK to use Library that does not follow our coding convention.
 -	Example: `cv2.adaptiveThreshold`, `cv2.morphologyEx`, 
-12.	All parameter inside the function following our naming convention rule.
+13.	All parameter inside the function following our naming convention rule.
 -	Correct Example: `def dot_product(vec_00: np.ndarray, vec_01: np.ndarray) -> np.ndarray:`
 -	Wrong Example: `def dot_product(vec_0: np.ndarray, vec_1: np.ndarray) -> np.ndarray:`
 -	Wrong Example: `def dot_product(vec_1: np.ndarray, vec_2: np.ndarray) -> np.ndarray:`
 -	Wrong Example: `def dot_product(vec_01: np.ndarray, vec_02: np.ndarray) -> np.ndarray:`
-13.	Always specify the type of input parameter and output.
+14.	Always specify the type of input parameter and output.
 -	Correct Example: `def dot_product(vec_00: np.ndarray, vec_01: np.ndarray) -> np.ndarray:`
 -	Wrong Example: `def dot_product(vec_00: np.ndarray, vec_01: np.ndarray):`
 -	Wrong Example: `def dot_product(vec_00, vec_01) -> np.ndarray:`
 -	Wrong Example: `def dot_product(vec_00, vec_01):`
-14. You can use `############################` for separating the Python file as multiple sections depending on how you separate it.
-15. Do not specify the output type of OOP constructure and the input type of parameter `self` in class.
+15. You can use `############################` for separating the Python file as multiple sections depending on how you separate it.
+16. Do not specify the output type of OOP constructure and the input type of parameter `self` in class.
+
+-   Correct Example
+
+```
+class img_process_rgb(img_process):
+    def __init__(self, img: Self | np.ndarray | str):
+        if type(img) == Self:
+            self.img = np.copy(img.img)
+        elif type(img) == str:
+            self.img = cv2.imread(filename=img)
+            if self.img is None:
+                raise ValueError(f"Error: The file at path '{img}' could not be loaded.")
+        elif type(img) == np.ndarray:
+            self.img = rgb_img(img = img)
+        else:
+            raise TypeError("Error: Input must be an instance of 'img_process_rgb', a NumPy array, or a file path.")
+
+# The type of `self` and output type of `__init__` are not specified.
+```
 
 # Naming Meaning
 
