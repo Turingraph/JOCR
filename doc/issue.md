@@ -11,4 +11,4 @@ JOCR MVP coding plan
 10. Deploy (2 days, if use more than that contact Jojo)
 
 Status
-*   finish 1 and 2 JOCR MVP coding plan steps !
+*   finish 1, 2 and 3 JOCR MVP coding plan steps !
