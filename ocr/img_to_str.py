@@ -10,35 +10,34 @@ def get_ocr_text(img:str|np.ndarray) -> str:
 
 def save_text(
     text:str,
-    title:str="text_result",
-    folder:str="text_result",
-    fileformat:str="txt",
-    show:bool=False,
+    path: list[str] | str = ["str_out", "str_out", "txt"],
 )-> None:
+    if isinstance(path, list):
+        if len(path) == 0:
+            path = ["str_out", "str_out", "txt"]
+        if len(path) == 1:
+            path = [path[0], "str_out", "txt"]
+        if len(path) == 2:
+            path = [path[0], path[1], "txt"]
+    if isinstance(path, str):
+        path = ["str_out", path, "txt"]
     # https://www.w3schools.com/python/python_file_write.asp
     # https://www.geeksforgeeks.org/python-check-if-a-file-or-directory-exists/
-    if not os.path.exists(path=folder):
-        os.makedirs(name=folder)
-    if fileformat[0] == ".":
-        fileformat = fileformat[1:]
-    path = os.path.join(folder, title + "." + fileformat)
+    if not os.path.exists(path=path[0]):
+        os.makedirs(name=path[0])
+    path = os.path.join(path[0], path[1] + "." + path[2])
     file = open(file=path, mode="w")
     file.write(text)
     file.close()
-    if show == True:
-        print(values=text)
 
 
 def save_ocr_text(
     img:np.ndarray,
-    title:str="str_out",
-    folder:str="str_out",
-    fileformat:str="txt",
-    show:bool=False,
+    path: list[str] = ["str_out", "str_out", "txt"],
 ) -> None:
     # https://www.w3schools.com/python/python_file_write.asp
     # https://www.geeksforgeeks.org/python-check-if-a-file-or-directory-exists/
     text = get_ocr_text(img=img)
     save_text(
-        text=text, title=title, folder=folder, fileformat=fileformat, show=show
+        text=text, path=path
     )
