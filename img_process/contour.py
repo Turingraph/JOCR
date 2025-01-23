@@ -13,21 +13,21 @@ def get_contours(dilate_img: np.ndarray) -> tuple:
 
 def detect_contour_img(
     img: np.ndarray,
-    threshold_px: None | int = None,
+    thresh: None | int = None,
     kernel: np.ndarray = np.ones(shape=(2, 30)),
     ksize: int = 9,
 ) -> np.ndarray:
     ksize = u_odd(num=ksize)
     img = cv2.GaussianBlur(src=img, ksize=(ksize, ksize), sigmaX=0)
-    if threshold_px != None:
+    if thresh != None:
         thresh = threshold(
             method=cv2.THRESH_BINARY, 
-            threshold_px=threshold_px,
+            thresh=thresh,
             maxval=255)
         img=thresh.edit(img=img)
     thresh = threshold(
         method=cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU, 
-        threshold_px=0,
+        thresh=0,
         maxval=255)
     img=thresh.edit(img=img)
     img = cv2.dilate(src=img, kernel=kernel, iterations=1)

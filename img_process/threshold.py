@@ -10,9 +10,9 @@ threshold class attribute.
 *	cv2.THRESH_TRUNC
 *	cv2.THRESH_TOZERO
 *	cv2.THRESH_TOZERO_INV
-2.	threshold_px = None
-*	if type(threshold_px) == int : activating customized threshold
-*	if type(threshold_px) != int : activating Otsu threshold
+2.	thresh = None
+*	if type(thresh) == int : activating customized threshold
+*	if type(thresh) != int : activating Otsu threshold
 3.	maxval = 255
 
 threshold_adapt class attribute.
@@ -36,19 +36,19 @@ Reference
 message_01 = """
 THRESHOLD MODE IN CV
 1.  cv2.THRESH_BINARY
-*   if px > threshold_px then px = maxval else px = 0
+*   if px > thresh then px = maxval else px = 0
 2.	cv2.THRESH_BINARY_INV
-*	if px < threshold_px then px = maxval else px = 0
+*	if px < thresh then px = maxval else px = 0
 3.	cv2.THRESH_TRUNC
-*	if px > threshold_px then px = threshold_px else px = px
+*	if px > thresh then px = thresh else px = px
 4.	cv2.THRESH_TOZERO
-*	if px > threshold_px then px = px else px = 0
+*	if px > thresh then px = px else px = 0
 5.	cv2.THRESH_TOZERO_INV
-*	if px < threshold_px then px = px else px = 0
+*	if px < thresh then px = px else px = 0
 6.	cv2.ADAPTIVE_THRESH_MEAN_C
-*	Calculating the mean value of the surround pixels within the square ksize (width=ksize) and use that mean value as the threshold_px
+*	Calculating the mean value of the surround pixels within the square ksize (width=ksize) and use that mean value as the thresh
 7.	cv2.ADAPTIVE_THRESH_GAUSSIAN_C
-*	Calculating the "Gaussian" value of the surround pixels within the square ksize (width=ksize) and use that mean value as the threshold_px
+*	Calculating the "Gaussian" value of the surround pixels within the square ksize (width=ksize) and use that mean value as the thresh
 8.	cv2.THRESH_OTSU
 *	Consider an image with only two distinct image values (bimodal image), 
 *	where the histogram would only consist of two peaks. 
@@ -89,23 +89,23 @@ class threshold:
     def __init__(
         self,
         method: int = cv2.THRESH_BINARY,
-        threshold_px: None | int = None,
+        thresh: None | int = None,
         maxval: int = 255,
     ):
         self.method = get_default_option(
             input=method, 
             input_options=method_options, 
             message=message_02)
-        self.threshold_px = None
-        if type(threshold_px) == int:
-            self.threshold_px = set_px(num=threshold_px)
+        self.thresh = None
+        if type(thresh) == int:
+            self.thresh = set_px(num=thresh)
         self.maxval = set_px(num=maxval)
 
     def edit(self, img: np.ndarray) -> np.ndarray:
         img = gray_img(img = img)
-        if type(self.threshold_px) == int:
+        if type(self.thresh) == int:
             return cv2.threshold(
-                src=img.astype("uint8"), thresh=self.threshold_px, maxval=self.maxval, type=self.method
+                src=img.astype("uint8"), thresh=self.thresh, maxval=self.maxval, type=self.method
             )[1]
         else:
             return cv2.threshold(

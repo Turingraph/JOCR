@@ -56,13 +56,13 @@ class img_process_gray(img_process):
 
     def detect_contour_img(
         self,
-        threshold_px: None | int = None,
+        thresh: None | int = None,
         kernel: np.ndarray = np.ones(shape=(2, 30)),
         ksize: int = 9,
     ) -> None:
         self.img = detect_contour_img(
             img=self.img,
-            threshold_px=threshold_px,
+            thresh=thresh,
             kernel=kernel,
             ksize=ksize,
         )
@@ -73,10 +73,10 @@ class img_process_gray(img_process):
     def threshold(
         self,
         method: int = cv2.THRESH_BINARY,
-        threshold_px: int | None = None,
+        thresh: int | None = None,
         maxval: int = 255,
     ) -> None:
-        transformation = threshold(method=method, threshold_px=threshold_px, maxval=maxval)
+        transformation = threshold(method=method, thresh=thresh, maxval=maxval)
         self.img = transformation.edit(img=self.img)
 
     def threshold_adapt(
