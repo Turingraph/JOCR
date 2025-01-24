@@ -22,15 +22,17 @@ class ocr:
         self.timeout = timeout
         self.config = config
 
-    def save_text(self, img:np.ndarray|img_process, path: list[str] | str = ["str_out", "str_out", "txt"]):
+    def get_text(self, img:np.ndarray|img_process):
         if isinstance(img, img_process):
             img = img.img
         self.output = img_to_str(
-            img=img,
-            lang = self.lang,
-            config=self.psm + ' ' + self.oem + ' ' + self.config,
-            timeout=self.timeout
-        )
+                        img=img,
+                        lang = self.lang,
+                        config=self.psm + ' ' + self.oem + ' ' + self.config,
+                        timeout=self.timeout
+                    )
+
+    def save_text(self, path: list[str] | str = ["str_out", "str_out", "txt"]):
         save_text(self.output, path)
 
     def osd(self, img:np.ndarray|img_process, output_type:str = Output.STRING) -> any:
