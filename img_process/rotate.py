@@ -28,7 +28,7 @@ def get_skew_angle(img: np.ndarray) -> int:
 
     # 4.th There can be various approaches to determine skew angle,
     # but we’ll stick to the simple one — take the largest text block and use its angle.
-    largest_contour = sort_contours(contour = get_contours(dilate_img = img))[-1]
+    largest_contour = sort_contours(contour = get_contours(img = img))[-1]
 
     #####################################################################################################################
 

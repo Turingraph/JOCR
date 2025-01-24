@@ -13,13 +13,13 @@ sys.path.append(parent)
 from include.img_process_gray import img_process_gray
 from include.img_process_rgb import img_process_rgb
 
-path = parent + "/tests/fft/img/jojo_meme.jpg"
+path = parent + "/tests/__fft/img/jojo_meme.jpg"
 img = img_process_rgb(img=path)
 img.show(title="color")
-img = img_process_gray(img=img.img)
-img.show(title="b&w")
-img.fft_sharp(row=100, col=100)
-img.show("sharp")
+# img = img_process_gray(img=img.img)
+# img.show(title="b&w")
+# img.fft_sharp(row=100, col=100)
+# img.show("sharp")
 # img.save("fft_sharp")
 
 """

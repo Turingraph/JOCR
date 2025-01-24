@@ -15,7 +15,6 @@ def u_odd(n: int) -> int:
             return n + 1
 
 def set_px(n: int) -> int:
-    n = int(n)
     if n < 0:
         return 0
     elif n > 255:
@@ -48,11 +47,30 @@ def gray_img(img: np.ndarray) -> np.ndarray:
 
 def rgb_img(img: np.ndarray) -> np.ndarray:
     if len(img.shape) == 3:
-        img = np.copy(img)
+        return np.copy(img)
     elif len(img.shape) == 2:
-        img = cv2.cvtColor(src=img, code=cv2.COLOR_GRAY2RGB)
+        return cv2.cvtColor(src=img, code=cv2.COLOR_GRAY2RGB)
     else:
         raise ValueError("Error: Invalid NumPy array. len(img.shape) must be 2 or 3.")
+
+def check_img(img: np.ndarray) -> np.ndarray:
+    if len(img.shape) in [2,3]:
+        return img
+    else:
+        raise ValueError("Error: Invalid NumPy array. len(img.shape) must be 2 or 3.")
+
+def get_rgb(rgb:list[int]|int) -> list[int]:
+    if isinstance(rgb, int):
+        return [0, 0, set_px(rgb)]
+    else:
+        if len(rgb) == 0:
+            return [0, 0, 255]
+        if len(rgb) == 1:
+            return [0, 0, set_px(rgb[0])]
+        if len(rgb) == 2:
+            return [0, set_px(rgb[1]), set_px(rgb[0])]
+        else:
+            return [set_px(rgb[2]), set_px(rgb[1]), set_px(rgb[1])]
 
 """
 Reference

@@ -11,16 +11,15 @@ sys.path.append(parent)
 ###############################################################################################################
 
 import img_process.contour as tour
-from include.img_process_gray import img_process_gray
-from include.img_process_rgb import img_process_rgb
+from include.boxes_img import boxes_img
 import numpy as np
 
 path = parent + "/tests/01_index/img/img.jpeg"
-img = img_process_rgb(img = path)
-img.zoom(1)
-img.show()
+img = boxes_img(img = path, kernel=np.ones((13, 3)))
+img.dilate_img.show(title="default_dilate_image13x3")
+img.select_boxes(min_w=20,min_h=200)
+img.sort_boxes(method=0,reverse=True)
+img.show_boxes(rgb=255, title="marked image")
+img.origin_img.show(title="original image")
+img.save_boxes(path = "boxes_img")
 
-dilate_img = tour.contour_img(img=img.img, kernel=np.ones((13, 3)))
-dilate_img = img_process_gray(img = dilate_img)
-dilate_img.show(title="default_dilate_image13x3")
-dilate_img.save_img()

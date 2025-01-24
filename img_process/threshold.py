@@ -10,10 +10,8 @@ img_process/threshold.py/class threshold
 class threshold:
     def __init__(
         self,
-        method: int = cv2.THRESH_BINARY,
-        thresh: None | int = None,
-        # if type(thresh) == int : activating customized threshold
-        # if type(thresh) != int : activating cv2.THRESH_OTSU (8)
+        method: int = cv2.THRESH_BINARY + cv2.THRESH_OTSU,
+        thresh_px: int = 0,
         maxval: int = 255,
     ):
         ...
@@ -28,6 +26,7 @@ available `method` options
 -	cv2.THRESH_TRUNC        (2)
 -	cv2.THRESH_TOZERO       (3)
 -	cv2.THRESH_TOZERO_INV   (4)
+-   cv2.THRESH_OTSU         (8)
 -------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------- 
 img_process/threshold.py/class threshold_adapt
@@ -84,41 +83,25 @@ Reference
 -------------------------------------------------------------------------------------------
 """
 
-method_options = [
-    cv2.THRESH_BINARY,
-    cv2.THRESH_BINARY_INV,
-    cv2.THRESH_TRUNC,
-    cv2.THRESH_TOZERO,
-    cv2.THRESH_TOZERO_INV,
-    cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU
-]
-
 class threshold:
     def __init__(
         self,
-        method: int = cv2.THRESH_BINARY,
-        thresh: None | int = None,
+        method: int = cv2.THRESH_BINARY + cv2.THRESH_OTSU,
+        thresh_px: int = 0,
         maxval: int = 255,
     ):
-        self.method = get_options(
-            input=method, 
-            input_options=method_options, 
-            message=message)
-        self.thresh = None
-        if type(thresh) == int:
-            self.thresh = set_px(n=thresh)
+        self.method = method
+        self.thresh_px = set_px(n=thresh_px)
         self.maxval = set_px(n=maxval)
 
     def edit(self, img: np.ndarray) -> np.ndarray:
         img = gray_img(img = img)
-        if type(self.thresh) == int:
-            return cv2.threshold(
-                src=img.astype("uint8"), thresh=self.thresh, maxval=self.maxval, type=self.method
-            )[1]
-        else:
-            return cv2.threshold(
-                src=img.astype("uint8"), thresh=0, maxval=self.maxval, type=self.method + cv2.THRESH_OTSU
-            )[1]
+        return cv2.threshold(
+            src=img, thresh=self.thresh_px, maxval=self.maxval, type=self.method
+        )[1]
+    
+    def help() -> None:
+        print(message)
 
 
 class threshold_adapt:
@@ -130,7 +113,7 @@ class threshold_adapt:
         constant: int = 2,
         maxval: int = 255,
     ):
-        self.method = get_options(input=method, input_options=method_options, message=message)
+        self.method = method
         self.ksize = u_odd(n=ksize)
         self.constant = constant
         self.maxval = set_px(n=maxval)
@@ -150,3 +133,6 @@ class threshold_adapt:
             blockSize=self.ksize,
             C=self.constant,
         )
+
+    def help() -> None:
+        print(message)

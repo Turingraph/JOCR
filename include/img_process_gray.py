@@ -24,7 +24,7 @@ class img_process_gray(img_process):
         if type(img) == Self:
             self.img = img.img
         elif type(img) == str:
-            self.img = cv2.cvtColor(src=cv2.imread(img), code=cv2.COLOR_BGR2GRAY)
+            self.img = cv2.cvtColor(src=cv2.imread(img), code=cv2.COLOR_RGB2GRAY)
         elif type(img) == np.ndarray:
             self.img = gray_img(img = img)
         else:
@@ -56,13 +56,13 @@ class img_process_gray(img_process):
 
     def contour_img(
         self,
-        thresh: None | int = None,
+        thresh_px: None | int = None,
         kernel: np.ndarray = np.ones(shape=(2, 30)),
         ksize: int = 9,
     ) -> None:
         self.img = contour_img(
             img=self.img,
-            thresh=thresh,
+            thresh_px=thresh_px,
             kernel=kernel,
             ksize=ksize,
         )
@@ -72,12 +72,13 @@ class img_process_gray(img_process):
 
     def threshold(
         self,
-        method: int = cv2.THRESH_BINARY,
-        thresh: int | None = None,
+        method: int = cv2.THRESH_BINARY + cv2.THRESH_OTSU,
+        thresh_px: int = 0,
         maxval: int = 255,
     ) -> None:
-        transformation = threshold(method=method, thresh=thresh, maxval=maxval)
+        transformation = threshold(method=method, thresh_px=thresh_px, maxval=maxval)
         self.img = transformation.edit(img=self.img)
+
 
     def threshold_adapt(
         self,

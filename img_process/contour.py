@@ -4,9 +4,9 @@ from img_process.utility import u_odd
 from utility.utility import get_options
 from img_process.threshold import threshold
 
-def get_contours(dilate_img: np.ndarray) -> tuple:
+def get_contours(img: np.ndarray) -> tuple:
     contours, hierarchy = cv2.findContours(
-        image=dilate_img, 
+        image=img, 
         mode=cv2.RETR_LIST, 
         method=cv2.CHAIN_APPROX_SIMPLE
     )
@@ -14,23 +14,17 @@ def get_contours(dilate_img: np.ndarray) -> tuple:
 
 def contour_img(
     img: np.ndarray,
-    thresh: None | int = None,
+    thresh_px: int = 0,
     kernel: np.ndarray = np.ones(shape=(2, 30)),
     ksize: int = 9,
 ) -> np.ndarray:
     ksize = u_odd(n=ksize)
     img = cv2.GaussianBlur(src=img, ksize=(ksize, ksize), sigmaX=0)
-    if thresh != None:
-        thresh = threshold(
-            method=cv2.THRESH_BINARY, 
-            thresh=thresh,
-            maxval=255)
-        img=thresh.edit(img=img)
-    thresh = threshold(
+    transformation = threshold(
         method=cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU, 
-        thresh=0,
+        thresh_px=thresh_px,
         maxval=255)
-    img=thresh.edit(img=img)
+    img=transformation.edit(img=img)
     img = cv2.dilate(src=img, kernel=kernel, iterations=1)
     return img
 

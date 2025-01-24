@@ -6,8 +6,8 @@ JOCR MVP coding plan
 5. Make table (3 days, if we use more time than that, ignore it in MVP)
 6. Make front-end with one page (5 days)
 7. User doc (1 day)
-8. tesseract_ocr_installation.md (1 day, if use time more than that, ignore it)
-9. Code review (1 day, focus on first 2 SOLID principles and coding smell, if use time more that that, use another 1 day refactor every things except table)
+8. Code review (1 day, focus on first 2 SOLID principles and coding smell, if use time more that that, use another 1 day refactor every things except table)
+9. tesseract_ocr_installation.md (1 day, if use time more than that, ignore it)
 10. Deploy (2 days, if use more than that contact Jojo)
 
 Status

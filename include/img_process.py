@@ -3,6 +3,7 @@ import numpy as np
 from img_process.show import show, save_img
 from img_process.zoom import remove_borders, zoom, create_borders, crop
 from img_process.rotate import rotate
+from img_process.drawing import rectangle
 # https://www.reddit.com/r/vscode/comments/19eqplp/python_typing_issue_unsupported_operand_types_for/?rdt=43767
 from typing import Self
 
@@ -49,3 +50,9 @@ class img_process:
 
     def rotate(self, angle: int | None = None) -> None:
         self.img = rotate(img=self.img, angle=angle)
+
+    ########################################################################################################################################################
+    # img_process/color.py
+
+    def rectangle(self, rgb:list[int]|int, x:int, y:int, h:int, w:int) -> None:
+        self.img = rectangle(img = self.img, rgb=rgb, x=x, y=y, w=w, h=h)
