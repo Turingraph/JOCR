@@ -36,6 +36,7 @@ ocr_driver = ocr(
 )
 for i in range(len(path)):
     img = img_process_rgb(img = (parent + path[i])).img
-    ocr_driver.save_text(img = img, path = ["str_out_oop", name[i]])
+    ocr_driver.get_text(img=img)
+    ocr_driver.save_text(path = ["str_out_oop", name[i]])
 
 ###############################################################################################################
