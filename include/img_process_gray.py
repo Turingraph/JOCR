@@ -93,7 +93,7 @@ class img_process_gray(img_process):
         self.img = transformation.edit(img=self.img)
 
     ########################################################################################################################################################
-    # img_process/kernel_2D.py
+    # img_process/kernel_2d.py
 
     def sharp_filter2d(
         self, ls: list[float] = [-0.1, -5], center_px: int | None = None
