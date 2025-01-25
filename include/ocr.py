@@ -4,7 +4,8 @@ from pytesseract import Output
 from ocr.osd import osd
 from ocr.save_text import save_text
 import numpy as np
-from include.img_process import img_process
+from include.img_process_rgb import img_process_rgb
+from include.img_process_gray import img_process_gray
 
 class ocr:
     def __init__(
@@ -15,27 +16,28 @@ class ocr:
             timeout:int = 0,
             config:str = ''
             ):
-        self.output = ''
+        self.out = ''
         self.lang = lang
         self.psm = get_psm(psm)
         self.oem = get_oem(oem)
         self.timeout = timeout
         self.config = config
 
-    def get_text(self, img:np.ndarray|img_process):
-        if isinstance(img, img_process):
+    def img_to_str(self, img:np.ndarray|img_process_rgb|img_process_gray)-> None:
+        if isinstance(img, img_process_rgb) or isinstance(img, img_process_gray):
             img = img.img
-        self.output = img_to_str(
+        self.out = ''
+        self.out = img_to_str(
                         img=img,
                         lang = self.lang,
                         config=self.psm + ' ' + self.oem + ' ' + self.config,
                         timeout=self.timeout
                     )
 
-    def save_text(self, path: list[str] | str = ["str_out", "str_out", "txt"]):
-        save_text(self.output, path)
+    def save_text(self, path: list[str] | str = ["str_out", "str_out", "txt"])-> None:
+        save_text(self.out, path)
 
-    def osd(self, img:np.ndarray|img_process, output_type:str = Output.STRING) -> any:
-        if isinstance(img, img_process):
+    def osd(self, img:np.ndarray|img_process_rgb|img_process_gray, out_type:str = Output.STRING) -> any:
+        if isinstance(img, img_process_rgb) or isinstance(img, img_process_gray):
             img = img.img
-        return osd(img=img, output_type=output_type, timeout=self.timeout)
+        return osd(img=img, out_type=out_type, timeout=self.timeout)

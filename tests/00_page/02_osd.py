@@ -19,6 +19,6 @@ from include.ocr import ocr
 path = parent + "/tests/00_page/img_out/img_out.jpg"
 
 img = img_process_gray(img=path)
-ocr_driver = ocr()
-out = ocr_driver.osd(img=img,output_type=Output.DICT)
+ocr_setting = ocr()
+out = ocr_setting.osd(img=img,out_type=Output.DICT)
 print(out)

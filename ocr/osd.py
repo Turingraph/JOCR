@@ -3,15 +3,15 @@ from pytesseract import Output
 import numpy as np
 from utility.utility import get_options
 
-def osd(img:np.ndarray, output_type:str = Output.STRING,timeout:int = 0)->any:
+def osd(img:np.ndarray, out_type:str = Output.STRING,timeout:int = 0)->any:
     message = """
 -------------------------------------------------------------------------------------------
 ocr/osd.py/def osd
 
-def osd(img:np.ndarray, output_type:str,timeout:int = 0)->any:
+def osd(img:np.ndarray, out_type:str,timeout:int = 0)->any:
 # This function return the Tesseract OCR's output that show the orientation and 
 
-available `output_type` options
+available `out_type` options
 -   pytesseract.Output.STRING
 -   pytesseract.Output.BYTES
 -   pytesseract.Output.DATAFRAME
@@ -23,7 +23,7 @@ from PIL import Image
 import pytesseract
 
 im = Image.open(path) # path is the path of input image.
-osd = pytesseract.image_to_osd(im, output_type='dict')
+osd = pytesseract.image_to_osd(im, out_type='dict')
 print(osd)
 
 #   {
@@ -57,5 +57,5 @@ Reference
 *   https://github.com/Turingraph/JOCR/blob/master/doc/ocr_psm_tutorial.md
 -------------------------------------------------------------------------------------------
 """
-    output_type = get_options(input=output_type, input_options=[Output.STRING,Output.BYTES, Output.DATAFRAME, Output.DICT], message=message)
-    return pytesseract.image_to_osd(image = img, output_type=output_type,timeout=timeout)
+    out_type = get_options(input=out_type, input_options=[Output.STRING,Output.BYTES, Output.DATAFRAME, Output.DICT], message=message)
+    return pytesseract.image_to_osd(image = img, output_type=out_type,timeout=timeout)

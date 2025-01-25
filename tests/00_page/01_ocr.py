@@ -31,12 +31,12 @@ for i in range(len(path)):
 
 ###############################################################################################################
 
-ocr_driver = ocr(
+ocr_setting = ocr(
     lang = 'eng'
 )
 for i in range(len(path)):
     img = img_process_rgb(img = (parent + path[i])).img
-    ocr_driver.get_text(img=img)
-    ocr_driver.save_text(path = ["str_out_oop", name[i]])
+    ocr_setting.img_to_str(img=img)
+    ocr_setting.save_text(path = ["str_out_oop", name[i]])
 
 ###############################################################################################################

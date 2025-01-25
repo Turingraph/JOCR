@@ -24,7 +24,10 @@ class img_process_gray(img_process):
         if type(img) == Self:
             self.img = img.img
         elif type(img) == str:
-            self.img = cv2.cvtColor(src=cv2.imread(img), code=cv2.COLOR_RGB2GRAY)
+            self.img = cv2.imread(filename=img)
+            if self.img is None:
+                raise ValueError(f"Error: The file at path '{img}' could not be loaded.")
+            self.img = cv2.cvtColor(src=self.img, code=cv2.COLOR_RGB2GRAY)
         elif type(img) == np.ndarray:
             self.img = gray_img(img = img)
         else:
