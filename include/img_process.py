@@ -40,10 +40,10 @@ class img_process:
         self,
         x: int | None = None,
         y: int | None = None,
-        width: int | None = None,
-        height: int | None = None,
+        w: int | None = None,
+        h: int | None = None,
     ) -> None:
-        self.img = crop(img=self.img, x=x, y=y, width=width, height=height)
+        self.img = crop(img=self.img, x=x, y=y, w=w, h=h)
 
     def create_borders(self, size: int = 50) -> None:
         self.img = create_borders(img=self.img, size=size)

@@ -7,12 +7,12 @@ message = """
 img_process/kernel_2d.py/def kernel_2d
 
 def kernel_2d(
-    width: int,
-    height: int | None = None,
+    w: int,
+    h: int | None = None,
     scalar: float = 1,
     mode: int = cv2.MORPH_RECT,
 ) -> np.ndarray:
-# This function create `np.ndarray` kernel with `(width, height)` as it's `shape`, based on `mode` option
+# This function create `np.ndarray` kernel with `(w, h)` as it's `shape`, based on `mode` option
 
 available `mode` options
 -   cv2.MORPH_RECT      =   Rectangular Kernel
@@ -47,8 +47,8 @@ Reference
 input_options = [cv2.MORPH_RECT, cv2.MORPH_ELLIPSE, cv2.MORPH_CROSS]
 
 def kernel_2d(
-    width: int,
-    height: int | None = None,
+    w: int,
+    h: int | None = None,
     scalar: float = 1,
     mode: int = cv2.MORPH_RECT,
 ) -> np.ndarray:
@@ -56,11 +56,11 @@ def kernel_2d(
         input = mode, 
         input_options = input_options, 
         message = message)
-    if height == None:
-        height = width
+    if h == None:
+        h = w
     return scalar * cv2.getStructuringElement(
         mode, 
-        (width, height))
+        (w, h))
 
 def sharp_kernel_2d(
     ls: list[float] = [-0.1, -5], center_px: None | float = None

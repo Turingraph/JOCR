@@ -17,33 +17,33 @@ This project is in the MVP development process. For anyone who want to contribut
 # MVP (Minimum Viable Product)
 
 Expected Feature
-1.	`img_process\`
+1.	`img_process/`, `include/img_process.py`, `include/img_process_rgb.py`, `include/img_process_gray.py`
 -	Purpose: Processing Image e.g. Threshold, Blur, Convolution, Orientation etc.
-2.	`img_to_str\`
+2.	`ocr/`, `include/ocr.py`
 -	Purpose: converting Image to text output using Tesseract OCR model and Pytesseract Python library.
-3.	`table\`
+3.	`include/boxes_img.py`
 -	Purpose: separating the image in to smaller images based on the groups of text.
-4.	`frontend\`
+4.	`frontend/`
 -	Purpose: User Friendly UI Frontend
-5.	`frontend_img\`
+5.	`frontend_img/`
 -	Purpose: User Friendly UI Frontend design
-6.  `tests\`
+6.  `tests/`
 -	Purpose: check if the code work as expected and demonstrate how to use our code.
-7.  `include\`
+7.  `include/`
 -	Purpose: The Interface for enhance open closed principle.
-8.  `get_data\`
+8.  `get_data/`
 -	Purpose: Get OCR data as txt, csv or pdf file.
 
 Ignore Advanced Feature
-1.	`get_data\`
+1.	`get_data/`
 -	Purpose: Get data for training AI model.
-2.	`img_observe\`
+2.	`img_observe/`
 -	Purpose: Analyzing the image's Pixel values in order to process image automatically.
-3.	`spell\`
+3.	`spell/`
 -	Purpose: Check and correct Tesseract OCR output automatically.
-4.	`language\`
+4.	`language/`
 -	Purpose: Check the language of the Tesseract OCR output.
-5.	`latex\`
+5.	`latex/`
 -	Purpose: Convert image of mathematical notation e.g. ratio, integration, vector etc to Latex representation. (OCR mathematical notation)
 
 # Additional Information

@@ -6,18 +6,16 @@
 4.	`ocr/`
 5.	`include/`
 6.	`doc_user/`
-7.	`table/`
-8.	`img_observe/`
-9.	`get_data/`
-10.	`spell/`
-11.	`frontend/`
-12.	`frontend_img/`
-13.	`language/`
-14.	`latex/`
+7.	`img_observe/`
+8.	`get_data/`
+9.	`spell/`
+10.	`frontend/`
+11.	`frontend_img/`
+12.	`language/`
+13.	`latex/`
 
 Note that the following directory are empty because this project is in very early state.
 1.  `doc_user/`
-2.  `table/`
 3.  `img_observe/`
 4.  `get_data/`
 5.  `spell/`
@@ -96,10 +94,6 @@ This directory contains Pytesseract script that is used for converting image wit
 # `doc_user/` (User documentation)
 
 This directory contains only user documentation files.
-
-# `table/`
-
-This directory contains the OCR and image processing script for get the csv data from table image. 
 
 # `img_observe/`
 

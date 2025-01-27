@@ -3,7 +3,7 @@
 -	Purpose : Explaining how to use `black` in Python.
 2.	`code_of_conduct.md`
 -	Purpose : Explaining how to contribute this project.
-3.	`__deployment.md`
+3.	`__deployment.md` 
 -	Purpose : Explaining how to deploy this project. It is unusable and under development.
 4.	`folder_structure.md`
 -	Purpose : Explaining the folder structure of this project.

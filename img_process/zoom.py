@@ -38,17 +38,17 @@ def crop(
     img: np.ndarray,
     x: int | None = None,
     y: int | None = None,
-    width: int | None = None,
-    height: int | None = None,
+    w: int | None = None,
+    h: int | None = None,
 ) -> np.ndarray:
     x = get_size(size=x, maxval=img.shape[1])
     y = get_size(size=y, maxval=img.shape[0])
-    if type(width) == int:
-        width = get_size(size=x + width, maxval=img.shape[1], default_size=img.shape[1] - x)
+    if type(w) == int:
+        w = get_size(size=x + w, maxval=img.shape[1], default_size=img.shape[1] - x)
     else:
-        width = img.shape[1]
-    if type(height) == int:
-        height = get_size(size=y + height, maxval=img.shape[0], default_size=img.shape[0] - y)
+        w = img.shape[1]
+    if type(h) == int:
+        h = get_size(size=y + h, maxval=img.shape[0], default_size=img.shape[0] - y)
     else:
-        height = img.shape[0]
-    return img[y : y + height, x : x + width]
+        h = img.shape[0]
+    return img[y : y + h, x : x + w]
